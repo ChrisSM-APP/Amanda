@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LTL Freight Class &amp; NMFC Calculator</title>
+<title>TotalOne â€” LTL Freight Class &amp; NMFC Calculator</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f5;color:#212529;font-size:14px;line-height:1.5}
-.site-header{background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);color:white;padding:18px 24px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fdf0f5;color:#212529;font-size:14px;line-height:1.5}
+.site-header{background:linear-gradient(135deg,#8b1a4a 0%,#c2185b 100%);color:white;padding:18px 24px}
 .site-header h1{font-size:20px;font-weight:800;letter-spacing:-0.3px}
-.site-header p{font-size:12px;color:#a8c4e0;margin-top:3px}
-.tab-nav{background:#1e3a5f;display:flex;padding:0 24px;border-bottom:3px solid #e67e22}
-.tab-btn{background:none;border:none;color:#a8c4e0;padding:11px 20px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .2s}
+.site-header p{font-size:12px;color:#f8bbd0;margin-top:3px}
+.tab-nav{background:#8b1a4a;display:flex;padding:0 24px;border-bottom:3px solid #f06292}
+.tab-btn{background:none;border:none;color:#f8bbd0;padding:11px 20px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .2s}
 .tab-btn:hover{color:white}
-.tab-btn.active{color:white;border-bottom-color:#e67e22}
+.tab-btn.active{color:white;border-bottom-color:#f06292}
 .tab-content{display:none}
 .tab-content.active{display:block}
 .container{max-width:1100px;margin:0 auto;padding:20px}
@@ -26,23 +26,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .pieces-table tr:last-child td{border-bottom:none}
 .pieces-table input[type="number"],.pieces-table input[type="text"]{width:100%;padding:5px 7px;border:1px solid #ced4da;border-radius:4px;font-size:13px;text-align:center}
 .pieces-table input[type="text"]{text-align:left}
-.pieces-table input:focus{outline:none;border-color:#2c5282;box-shadow:0 0 0 2px rgba(44,82,130,.15)}
+.pieces-table input:focus{outline:none;border-color:#c2185b;box-shadow:0 0 0 2px rgba(194,24,91,.15)}
 .pallet-check{text-align:center}
-.pallet-check input[type="checkbox"]{width:16px;height:16px;cursor:pointer;accent-color:#2c5282}
+.pallet-check input[type="checkbox"]{width:16px;height:16px;cursor:pointer;accent-color:#c2185b}
 .btn-remove{background:none;border:none;color:#dc3545;font-size:18px;cursor:pointer;padding:2px 6px;line-height:1;border-radius:4px}
 .btn-remove:hover{background:#fff0f0}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
-.btn-primary{background:#1e3a5f;color:white}.btn-primary:hover{background:#2c5282}
+.btn-primary{background:#8b1a4a;color:white}.btn-primary:hover{background:#c2185b}
 .btn-success{background:#27ae60;color:white}.btn-success:hover{background:#219a52}
 .btn-secondary{background:#6c757d;color:white}.btn-secondary:hover{background:#5a6268}
-.btn-outline{background:white;color:#1e3a5f;border:2px solid #1e3a5f}.btn-outline:hover{background:#1e3a5f;color:white}
+.btn-outline{background:white;color:#8b1a4a;border:2px solid #8b1a4a}.btn-outline:hover{background:#8b1a4a;color:white}
 .btn-sm{padding:5px 11px;font-size:12px}
 .btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;margin-bottom:18px}
 .opt-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-group{display:flex;flex-direction:column;gap:4px}
 .form-group label{font-size:11px;font-weight:700;color:#495057;text-transform:uppercase;letter-spacing:.4px}
 .form-group input,.form-group textarea{padding:8px 12px;border:1px solid #ced4da;border-radius:6px;font-size:13px;font-family:inherit}
-.form-group input:focus,.form-group textarea:focus{outline:none;border-color:#2c5282;box-shadow:0 0 0 2px rgba(44,82,130,.15)}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:#c2185b;box-shadow:0 0 0 2px rgba(194,24,91,.15)}
 .form-group small{font-size:11px;color:#6c757d}
 .results-card{display:none}
 .results-card.show{display:block}
@@ -50,34 +50,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .results-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .rbox{background:#f8f9fa;border-radius:8px;padding:14px;text-align:center;border:1px solid #e9ecef}
 .rbox .lbl{font-size:10px;font-weight:700;color:#6c757d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.rbox .val{font-size:26px;font-weight:800;color:#1e3a5f;line-height:1}
+.rbox .val{font-size:26px;font-weight:800;color:#8b1a4a;line-height:1}
 .rbox .unit{font-size:11px;color:#6c757d;margin-top:3px}
-.rbox.cls-box{background:#1e3a5f;color:white}
-.rbox.cls-box .lbl{color:#a8c4e0}
+.rbox.cls-box{background:#8b1a4a;color:white}
+.rbox.cls-box .lbl{color:#f8bbd0}
 .rbox.cls-box .val{font-size:46px;color:white}
 .rate-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-top:5px}
 .examples-text{font-size:12px;color:#6c757d;margin-top:8px;font-style:italic}
 .alert-box{border-radius:6px;padding:10px 14px;font-size:13px;display:flex;gap:10px;align-items:flex-start;margin-top:12px}
 .alert-warn{background:#fff3cd;border:1px solid #ffc107}
 .alert-ok{background:#d4edda;border:1px solid #28a745}
-.alert-info{background:#e8f4fd;border:1px solid #2c5282}
+.alert-info{background:#e8f4fd;border:1px solid #c2185b}
 .alert-icon{font-size:16px;flex-shrink:0;margin-top:1px}
 .acc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:8px}
 .acc-item{display:flex;align-items:center;gap:8px;padding:8px 11px;background:#f8f9fa;border-radius:6px;border:1px solid #e9ecef;cursor:pointer;transition:all .15s}
-.acc-item:hover{background:#e8f4fd;border-color:#2c5282}
-.acc-item input[type="checkbox"]{accent-color:#2c5282;width:15px;height:15px;flex-shrink:0}
+.acc-item:hover{background:#e8f4fd;border-color:#c2185b}
+.acc-item input[type="checkbox"]{accent-color:#c2185b;width:15px;height:15px;flex-shrink:0}
 .acc-item label{font-size:13px;cursor:pointer;user-select:none}
 .search-bar input{width:100%;padding:10px 14px;border:2px solid #dee2e6;border-radius:6px;font-size:14px;margin-bottom:14px}
-.search-bar input:focus{outline:none;border-color:#2c5282}
+.search-bar input:focus{outline:none;border-color:#c2185b}
 .nmfc-table{width:100%;border-collapse:collapse;font-size:13px}
-.nmfc-table th{background:#1e3a5f;color:white;padding:9px 13px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+.nmfc-table th{background:#8b1a4a;color:white;padding:9px 13px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
 .nmfc-table td{padding:8px 13px;border-bottom:1px solid #f0f2f5}
 .nmfc-table tr:hover td{background:#f8f9fa}
-.nmfc-table .code{font-family:monospace;font-weight:700;color:#1e3a5f}
+.nmfc-table .code{font-family:monospace;font-weight:700;color:#8b1a4a}
 .nmfc-table .cls-cell{font-weight:700}
 .no-results{text-align:center;padding:36px;color:#6c757d;font-style:italic}
 .disclaimer{background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:11px 15px;font-size:12px;color:#856404;margin-top:14px}
-.toggle-ref-btn{background:none;border:none;color:#2c5282;font-size:12px;font-weight:600;cursor:pointer;text-decoration:underline}
+.toggle-ref-btn{background:none;border:none;color:#c2185b;font-size:12px;font-weight:600;cursor:pointer;text-decoration:underline}
 .ref-wrap{display:none;margin-top:14px;overflow-x:auto}
 .ref-wrap.open{display:block}
 .ref-table{width:100%;border-collapse:collapse;font-size:13px}
@@ -92,8 +92,8 @@ footer{text-align:center;padding:18px;font-size:11px;color:#6c757d;border-top:1p
 <body>
 
 <header class="site-header">
-  <h1>&#x1F69B; LTL Freight Class &amp; NMFC Calculator</h1>
-  <p>Density calculator &middot; Freight class lookup &middot; NMFC reference &middot; Broker quote tool</p>
+  <h1>🚛 TotalOne — LTL Freight Calculator</h1>
+  <p>Freight class &middot; NMFC lookup &middot; Linear feet &middot; Quote tool</p>
 </header>
 
 <nav class="tab-nav">
@@ -182,12 +182,12 @@ footer{text-align:center;padding:18px;font-size:11px;color:#6c757d;border-top:1p
       <div class="results-grid2">
         <div class="rbox" style="text-align:left">
           <div class="lbl">Total Weight</div>
-          <div style="font-size:22px;font-weight:800;color:#1e3a5f" id="res-weight">&#x2014;</div>
+          <div style="font-size:22px;font-weight:800;color:#8b1a4a" id="res-weight">&#x2014;</div>
           <div class="unit">lbs (incl. pallets)</div>
         </div>
         <div class="rbox" style="text-align:left">
           <div class="lbl">Total Cubic Feet</div>
-          <div style="font-size:22px;font-weight:800;color:#1e3a5f" id="res-cubicft">&#x2014;</div>
+          <div style="font-size:22px;font-weight:800;color:#8b1a4a" id="res-cubicft">&#x2014;</div>
           <div class="unit">cu ft</div>
         </div>
       </div>
@@ -269,7 +269,7 @@ footer{text-align:center;padding:18px;font-size:11px;color:#6c757d;border-top:1p
 </div>
 </div>
 
-<footer>LTL Freight Class &amp; NMFC Calculator &mdash; Reference use only &mdash; Verify all classifications with carriers and the official NMFTA tariff</footer>
+<footer>TotalOne &mdash; LTL Freight Calculator &mdash; Reference use only &mdash; Verify with carriers and the official NMFTA tariff</footer>
 
 <script>
 // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -583,7 +583,7 @@ function printSummary() {
     : '&#x2705; Under LFR threshold &mdash; ' + d.linearFt + ' linear ft used.';
 
   var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>LTL Shipment Summary ' + d.date + '</title>' +
-'<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#212529;font-size:12px;padding:28px}.hdr{border-bottom:3px solid #1e3a5f;padding-bottom:12px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-end}.hdr h1{font-size:18px;color:#1e3a5f;font-weight:800}.hdr .dt{font-size:11px;color:#666}.rrow{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}.rb{flex:1;min-width:90px;border:1px solid #ccc;border-radius:6px;padding:10px;text-align:center}.rb .l{font-size:10px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.4px;display:block}.rb .v{font-size:20px;font-weight:800;color:#1e3a5f;display:block}.rb .u{font-size:10px;color:#888;display:block}.rb.cls{background:#1e3a5f}.rb.cls .l{color:#a8c4e0}.rb.cls .v{color:white;font-size:32px}table{width:100%;border-collapse:collapse;margin-bottom:14px}th{background:#1e3a5f;color:white;padding:6px 9px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.3px}td{padding:6px 9px;border-bottom:1px solid #eee}tfoot td{font-weight:700;background:#f8f9fa}.sec{font-size:11px;font-weight:700;color:#1e3a5f;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 6px;padding-top:12px;border-top:1px solid #dee2e6}.alrt{border-radius:4px;padding:8px 12px;font-size:11px;margin-bottom:10px}.notes{border:1px solid #ccc;border-radius:4px;padding:8px;min-height:32px;font-size:11px;color:#333}.foot{text-align:center;font-size:10px;color:#aaa;margin-top:20px;border-top:1px solid #dee2e6;padding-top:8px}.pbtn{margin-top:14px;padding:8px 16px;background:#1e3a5f;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px}@media print{.pbtn{display:none}}</style></head><body>' +
+'<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#212529;font-size:12px;padding:28px}.hdr{border-bottom:3px solid #8b1a4a;padding-bottom:12px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-end}.hdr h1{font-size:18px;color:#8b1a4a;font-weight:800}.hdr .dt{font-size:11px;color:#666}.rrow{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}.rb{flex:1;min-width:90px;border:1px solid #ccc;border-radius:6px;padding:10px;text-align:center}.rb .l{font-size:10px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.4px;display:block}.rb .v{font-size:20px;font-weight:800;color:#8b1a4a;display:block}.rb .u{font-size:10px;color:#888;display:block}.rb.cls{background:#8b1a4a}.rb.cls .l{color:#f8bbd0}.rb.cls .v{color:white;font-size:32px}table{width:100%;border-collapse:collapse;margin-bottom:14px}th{background:#8b1a4a;color:white;padding:6px 9px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.3px}td{padding:6px 9px;border-bottom:1px solid #eee}tfoot td{font-weight:700;background:#f8f9fa}.sec{font-size:11px;font-weight:700;color:#8b1a4a;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 6px;padding-top:12px;border-top:1px solid #dee2e6}.alrt{border-radius:4px;padding:8px 12px;font-size:11px;margin-bottom:10px}.notes{border:1px solid #ccc;border-radius:4px;padding:8px;min-height:32px;font-size:11px;color:#333}.foot{text-align:center;font-size:10px;color:#aaa;margin-top:20px;border-top:1px solid #dee2e6;padding-top:8px}.pbtn{margin-top:14px;padding:8px 16px;background:#8b1a4a;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px}@media print{.pbtn{display:none}}</style></head><body>' +
 '<div class="hdr"><h1>&#x1F69B; LTL Shipment Summary</h1><span class="dt">Date: ' + d.date + '</span></div>' +
 '<div class="rrow">' +
   '<div class="rb cls"><span class="l">Freight Class</span><span class="v">' + d.freightClass + '</span></div>' +
@@ -595,7 +595,7 @@ function printSummary() {
   (d.fak  ? '<div class="rb"><span class="l">FAK Class</span><span class="v" style="font-size:16px">' + d.fak + '</span></div>' : '') +
 '</div>' +
 '<div class="alrt" style="background:' + lfrBg + ';border:1px solid ' + lfrBdr + '">' + lfrMsg + '</div>' +
-(d.fak ? '<div class="alrt" style="background:#e8f4fd;border:1px solid #2c5282">&#x1F4CB; <strong>FAK Agreement:</strong> Calculated class ' + d.freightClass + ' rated as class ' + d.fak + ' per customer FAK agreement.</div>' : '') +
+(d.fak ? '<div class="alrt" style="background:#e8f4fd;border:1px solid #c2185b">&#x1F4CB; <strong>FAK Agreement:</strong> Calculated class ' + d.freightClass + ' rated as class ' + d.fak + ' per customer FAK agreement.</div>' : '') +
 '<div class="sec">Pieces (' + d.pieces.length + ')</div>' +
 '<table><thead><tr><th>#</th><th>Description</th><th>Weight</th><th>Dimensions L&times;W&times;H</th><th>Cu Ft</th></tr></thead>' +
 '<tbody>' + pRows + '</tbody>' +
@@ -735,8 +735,8 @@ function autoLookupNmfc(q) {
  if (!matches.length) { box.style.display = 'none'; return; }
  box.innerHTML = matches.map(function(r) {
   return '<div onclick="selectNmfc(' + JSON.stringify(r) + ')" style="padding:8px 12px;cursor:pointer;border-bottom:1px solid #f0f2f5;font-size:12px" onmouseover="this.style.background=\'#e8f4fd\'" onmouseout="this.style.background=\'white\'">' +
-   '<strong>' + r.commodity + '</strong> &mdash; <span style="color:#2c5282;font-family:monospace">' + r.nmfc + '-' + r.sub + '</span>' +
-   ' &nbsp;<span style="background:#1e3a5f;color:white;padding:1px 7px;border-radius:10px;font-size:11px">Class ' + r.cls + '</span>' +
+   '<strong>' + r.commodity + '</strong> &mdash; <span style="color:#c2185b;font-family:monospace">' + r.nmfc + '-' + r.sub + '</span>' +
+   ' &nbsp;<span style="background:#8b1a4a;color:white;padding:1px 7px;border-radius:10px;font-size:11px">Class ' + r.cls + '</span>' +
    '</div>';
  }).join('');
  box.style.display = 'block';
@@ -751,7 +751,7 @@ function selectNmfc(r) {
  if (!hint) {
   hint = document.createElement('div');
   hint.id = 'nmfc-class-hint';
-  hint.style.cssText = 'margin-top:6px;padding:6px 10px;background:#e8f4fd;border:1px solid #2c5282;border-radius:4px;font-size:12px';
+  hint.style.cssText = 'margin-top:6px;padding:6px 10px;background:#e8f4fd;border:1px solid #c2185b;border-radius:4px;font-size:12px';
   document.getElementById('nmfc-input').parentNode.appendChild(hint);
  }
  hint.innerHTML = '&#x1F4E6; <strong>' + r.commodity + '</strong> &mdash; Expected class: <strong>' + r.cls + '</strong> &nbsp;<span style="color:#666;font-size:11px">(' + r.notes + ')</span>';
@@ -769,3 +769,4 @@ init();
 </script>
 </body>
 </html>
+
