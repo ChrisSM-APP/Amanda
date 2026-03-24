@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AllProPay Mission Control âš”ï¸</title>
+  <title>AllProPay Mission Control ⚔️</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -43,7 +43,7 @@
       line-height: 1.5;
     }
 
-    /* â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── HEADER ─────────────────────────────────────────── */
     header {
       background: linear-gradient(135deg, #0d1117 0%, #111827 50%, #0d1117 100%);
       border-bottom: 1px solid var(--border);
@@ -153,7 +153,7 @@
 
     #status-label { color: var(--text); }
 
-    /* â”€â”€ STATS BAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── STATS BAR ──────────────────────────────────────── */
     .stats-bar {
       background: var(--bg-panel);
       border-bottom: 1px solid var(--border);
@@ -221,7 +221,7 @@
       transition: width 0.6s ease;
     }
 
-    /* â”€â”€ MAIN LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── MAIN LAYOUT ────────────────────────────────────── */
     main {
       max-width: 1400px;
       margin: 0 auto;
@@ -236,7 +236,7 @@
       main { grid-template-columns: 1fr; padding: 16px; }
     }
 
-    /* â”€â”€ PANELS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── PANELS ─────────────────────────────────────────── */
     .panel {
       background: var(--bg-panel);
       border: 1px solid var(--border);
@@ -304,7 +304,7 @@
     .panel-body::-webkit-scrollbar-track { background: transparent; }
     .panel-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    /* â”€â”€ TASK CARDS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── TASK CARDS ─────────────────────────────────────── */
     .task-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -452,7 +452,7 @@
       font-size: 0.9rem;
     }
 
-    /* â”€â”€ ACTION ITEMS (CHECKLIST) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── ACTION ITEMS (CHECKLIST) ───────────────────────── */
     .phase-section { margin-bottom: 4px; }
 
     .phase-header {
@@ -530,7 +530,7 @@
     }
 
     .checklist-item input[type="checkbox"]:checked::after {
-      content: 'âœ“';
+      content: '✓';
       position: absolute;
       top: -1px;
       left: 1px;
@@ -551,7 +551,7 @@
       text-decoration: line-through;
     }
 
-    /* â”€â”€ ADD TASK MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── ADD TASK MODAL ─────────────────────────────────── */
     .fab {
       position: fixed;
       bottom: 28px;
@@ -689,7 +689,7 @@
 
     .btn-primary:hover { background: var(--blue-bright); }
 
-    /* â”€â”€ EMPTY STATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── EMPTY STATE ────────────────────────────────────── */
     .empty-state {
       text-align: center;
       padding: 28px 16px;
@@ -697,10 +697,10 @@
       font-size: 0.8rem;
     }
 
-    /* â”€â”€ FULL WIDTH â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── FULL WIDTH ─────────────────────────────────────── */
     .full-width { grid-column: 1 / -1; }
 
-    /* â”€â”€ TOAST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── TOAST ──────────────────────────────────────────── */
     .toast {
       position: fixed;
       bottom: 90px;
@@ -720,7 +720,7 @@
 
     .toast.show { transform: translateY(0); opacity: 1; }
 
-    /* â”€â”€ DRAG HANDLE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── DRAG HANDLE ────────────────────────────────────── */
     .drag-handle {
       color: var(--text-dim);
       cursor: grab;
@@ -741,7 +741,7 @@
       background: var(--blue-glow);
     }
 
-    /* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* ── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 600px) {
       header { padding: 0 16px; }
       .brand-text p { display: none; }
@@ -757,10 +757,10 @@
 <header>
   <div class="header-inner">
     <div class="brand">
-      <div class="brand-icon">âš”ï¸</div>
+      <div class="brand-icon">⚔️</div>
       <div class="brand-text">
         <h1>AllProPay Mission Control</h1>
-        <p>Powered by Max Â· Command &amp; Execute</p>
+        <p>Powered by Max · Command &amp; Execute</p>
       </div>
     </div>
     <div class="header-right">
@@ -806,7 +806,7 @@
     <div class="panel-header">
       <div class="panel-title">
         <span class="dot dot-active"></span>
-        Active â€” Max Is Working On
+        Active — Max Is Working On
       </div>
       <span class="panel-count" id="count-active">0</span>
     </div>
@@ -818,7 +818,7 @@
     <div class="panel-header">
       <div class="panel-title">
         <span class="dot dot-queue"></span>
-        Up Next â€” Queue
+        Up Next — Queue
       </div>
       <span class="panel-count" id="count-queue">0</span>
     </div>
@@ -856,7 +856,7 @@
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <h2>âš”ï¸ Add New Task</h2>
+    <h2>⚔️ Add New Task</h2>
     <div class="form-group">
       <label>Task Name</label>
       <input type="text" id="new-task-name" placeholder="Describe the task..." />
@@ -864,9 +864,9 @@
     <div class="form-group">
       <label>Category</label>
       <select id="new-task-cat">
-        <option value="active">ðŸ”µ Active (working now)</option>
-        <option value="queue" selected>ðŸŸ¡ Queue (up next)</option>
-        <option value="done">âœ… Completed</option>
+        <option value="active">🔵 Active (working now)</option>
+        <option value="queue" selected>🟡 Queue (up next)</option>
+        <option value="done">✅ Completed</option>
       </select>
     </div>
     <div class="form-group">
@@ -887,7 +887,7 @@
 (function () {
   'use strict';
 
-  /* â”€â”€ DEFAULTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── DEFAULTS ─────────────────────────────────────────── */
   const now = Date.now();
   const today = new Date().toDateString();
 
@@ -896,42 +896,42 @@
   }
 
   const DEFAULTS = {
-    status: 'working',
-    active: [
-      { id: uid(), name: 'Building Gemini Gems library (processor gems, role gems)', note: 'Creating structured system prompts for each gem type', ts: ts(40) },
-      { id: uid(), name: 'Pulling AllProPay Drive content for gem system prompts',   note: 'Extracting context from Drive docs for gem training',  ts: ts(15) },
-    ],
+    status: 'idle',
+    active: [],
     queue: [
-      { id: uid(), name: 'Gemini Gems â€” North processor gem' },
-      { id: uid(), name: 'Gemini Gems â€” PayARC processor gem' },
-      { id: uid(), name: 'Gemini Gems â€” PayROC processor gem' },
-      { id: uid(), name: 'Gemini Gems â€” Nuvei Canada processor gem' },
-      { id: uid(), name: 'Gemini Gems â€” Opener gem' },
-      { id: uid(), name: 'Gemini Gems â€” Closer gem' },
-      { id: uid(), name: 'Gemini Gems â€” CS gem' },
-      { id: uid(), name: 'Gemini Gems â€” Equipment/Gateway gem' },
-      { id: uid(), name: 'Lead scraping tool research' },
-      { id: uid(), name: 'AllProPay website rebuild' },
-      { id: uid(), name: 'FluidPay booking software research' },
-      { id: uid(), name: 'Zoho migration support' },
+      { id: uid(), name: 'Morning brief cron (7:00am EST) - pending #morning-brief channel' },
+      { id: uid(), name: 'Pull + analyze proposal sheets from Drive - waiting on Chris upload' },
+      { id: uid(), name: 'Full payroll/comp analysis + career ladder draft' },
+      { id: uid(), name: 'CS incentive structure proposal (Katie + future CS hires)' },
+      { id: uid(), name: 'Lead campaign builder UI (232K database - filter - export CSV)' },
+      { id: uid(), name: 'Rana Zoho sprint plan summary' },
+      { id: uid(), name: 'Opener live sheet 2025 trend analysis' },
+      { id: uid(), name: 'AllProPay GitHub Hub - ongoing updates' },
     ],
     done: [
-      { id: uid(), name: 'Initial setup + memory system',                          ts: ts(480) },
-      { id: uid(), name: 'AllProPay context download (P&L + growth strategy)',      ts: ts(420) },
-      { id: uid(), name: 'Project manager system',                                  ts: ts(380) },
-      { id: uid(), name: 'Discord channels setup (#tasks, #allpropay, #max-log)',   ts: ts(360) },
-      { id: uid(), name: 'Daily team message scheduled (8:30am EST weekdays)',      ts: ts(320) },
-      { id: uid(), name: 'Activation rate + clawback analysis',                     ts: ts(280) },
-      { id: uid(), name: 'NMFC research for Amanda',                                ts: ts(250) },
-      { id: uid(), name: 'Opener scripts research',                                 ts: ts(210) },
-      { id: uid(), name: 'LTL Calculator for Amanda (hosted on GitHub)',            ts: ts(170) },
-      { id: uid(), name: 'CS Call Guide for Katie',                                 ts: ts(120) },
-      { id: uid(), name: 'Google Drive integration',                                ts: ts(60) },
+      { id: uid(), name: 'Initial setup + memory system',                          ts: ts(2880) },
+      { id: uid(), name: 'AllProPay context download (P&L + growth strategy)',      ts: ts(2800) },
+      { id: uid(), name: 'Project manager system',                                  ts: ts(2700) },
+      { id: uid(), name: 'Discord channels setup',                                  ts: ts(2600) },
+      { id: uid(), name: 'Daily team message scheduled (8:30am EST weekdays)',      ts: ts(2500) },
+      { id: uid(), name: 'Activation rate + clawback analysis',                     ts: ts(2400) },
+      { id: uid(), name: 'NMFC research for Amanda',                                ts: ts(2300) },
+      { id: uid(), name: 'Opener scripts research',                                 ts: ts(2200) },
+      { id: uid(), name: 'Opener performance analysis (2025 data)',                 ts: ts(2100) },
+      { id: uid(), name: 'Zoho CRM full audit + Rana sprint plan',                  ts: ts(2000) },
+      { id: uid(), name: 'Calculator assessment + rebuild spec',                    ts: ts(1900) },
+      { id: uid(), name: 'POS lookup tool built',                                   ts: ts(1800) },
+      { id: uid(), name: 'CS Call Guide for Katie',                                 ts: ts(1700) },
+      { id: uid(), name: 'LTL Calculator for Amanda (hosted on GitHub)',            ts: ts(1600) },
+      { id: uid(), name: 'Sales leaderboard tool built',                            ts: ts(1500) },
+      { id: uid(), name: 'FluidPay booking demo built',                             ts: ts(1400) },
+      { id: uid(), name: 'AllProPay Hub - GitHub Pages live',                       ts: ts(60)   },
+      { id: uid(), name: 'Mission Control updated + pushed to GitHub',              ts: ts(5)    },
     ],
     phases: [
       {
         id: 'phase1',
-        name: 'Phase 1 â€” Operational Foundation',
+        name: 'Phase 1 — Operational Foundation',
         open: true,
         items: [
           { id: uid(), text: 'Implement transfer routing in Zoho',             done: false },
@@ -949,7 +949,7 @@
       },
       {
         id: 'phase2',
-        name: 'Phase 2 â€” Scale & Systems',
+        name: 'Phase 2 — Scale & Systems',
         open: false,
         items: [
           { id: uid(), text: 'Build out Gemini Gem library (all 8 gems)',      done: false },
@@ -961,7 +961,7 @@
       },
       {
         id: 'phase3',
-        name: 'Phase 3 â€” Growth & Domination',
+        name: 'Phase 3 — Growth & Domination',
         open: false,
         items: [
           { id: uid(), text: 'Expand to 3 new verticals',                      done: false },
@@ -974,12 +974,16 @@
     doneDate: today,
   };
 
-  /* â”€â”€ STORAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── STORAGE ──────────────────────────────────────────── */
+  const DATA_VERSION = '2026-03-24-v3'; // bump this to force a reset
+
   function load() {
     try {
       const raw = localStorage.getItem('allpropay_mc');
       if (!raw) return null;
       const data = JSON.parse(raw);
+      // force reset if version mismatch
+      if (data.version !== DATA_VERSION) return null;
       // reset done list if it's a new day
       if (data.doneDate !== today) {
         data.done = [];
@@ -993,9 +997,9 @@
     try { localStorage.setItem('allpropay_mc', JSON.stringify(state)); } catch (e) {}
   }
 
-  let state = load() || JSON.parse(JSON.stringify(DEFAULTS));
+  let state = load() || JSON.parse(JSON.stringify({ ...DEFAULTS, version: DATA_VERSION, doneDate: today }));
 
-  /* â”€â”€ UTILS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── UTILS ────────────────────────────────────────────── */
   function uid() {
     return Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
   }
@@ -1012,7 +1016,7 @@
     setTimeout(() => el.classList.remove('show'), 2500);
   }
 
-  /* â”€â”€ STATUS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── STATUS ───────────────────────────────────────────── */
   const statusCycle = ['working', 'online', 'idle'];
   const statusLabel = { working: 'Working', online: 'Online', idle: 'Idle' };
   const statusClass = { working: 'working', online: '', idle: 'idle' };
@@ -1031,7 +1035,7 @@
     save(state);
   });
 
-  /* â”€â”€ STATS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── STATS ────────────────────────────────────────────── */
   function renderStats() {
     const total = state.active.length + state.queue.length + state.done.length;
     const pct = total ? Math.round((state.done.length / total) * 100) : 0;
@@ -1042,7 +1046,7 @@
     document.getElementById('progress-fill').style.width = pct + '%';
   }
 
-  /* â”€â”€ ACTIVE LIST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── ACTIVE LIST ──────────────────────────────────────── */
   function renderActive() {
     const el = document.getElementById('list-active');
     document.getElementById('count-active').textContent = state.active.length;
@@ -1052,7 +1056,7 @@
     }
     el.innerHTML = state.active.map(t => `
       <div class="task-card active-task" data-id="${t.id}" data-list="active">
-        <span class="task-icon">ðŸ”µ</span>
+        <span class="task-icon">🔵</span>
         <div class="task-info">
           <div class="task-name">${esc(t.name)}</div>
           ${t.note ? `<div class="task-meta">${esc(t.note)}</div>` : ''}
@@ -1064,37 +1068,37 @@
           </div>
         </div>
         <div class="task-actions">
-          <button class="btn-icon complete" title="Mark complete" onclick="completeTask('active','${t.id}')">âœ“</button>
-          <button class="btn-icon" title="Move to queue" onclick="moveTask('active','queue','${t.id}')">â†“</button>
-          <button class="btn-icon delete" title="Delete" onclick="deleteTask('active','${t.id}')">âœ•</button>
+          <button class="btn-icon complete" title="Mark complete" onclick="completeTask('active','${t.id}')">✓</button>
+          <button class="btn-icon" title="Move to queue" onclick="moveTask('active','queue','${t.id}')">↓</button>
+          <button class="btn-icon delete" title="Delete" onclick="deleteTask('active','${t.id}')">✕</button>
         </div>
       </div>
     `).join('');
   }
 
-  /* â”€â”€ QUEUE LIST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── QUEUE LIST ───────────────────────────────────────── */
   let dragSrc = null;
 
   function renderQueue() {
     const el = document.getElementById('list-queue');
     document.getElementById('count-queue').textContent = state.queue.length;
     if (!state.queue.length) {
-      el.innerHTML = '<div class="empty-state">Queue is empty â€” good work! âš”ï¸</div>';
+      el.innerHTML = '<div class="empty-state">Queue is empty — good work! ⚔️</div>';
       return;
     }
     el.innerHTML = state.queue.map((t, i) => `
       <div class="task-card" data-id="${t.id}" data-list="queue" data-index="${i}"
            draggable="true">
-        <span class="drag-handle" title="Drag to reorder">â ¿</span>
+        <span class="drag-handle" title="Drag to reorder">⠿</span>
         <span class="queue-num">${i + 1}</span>
         <div class="task-info">
           <div class="task-name">${esc(t.name)}</div>
           ${t.note ? `<div class="task-meta">${esc(t.note)}</div>` : ''}
         </div>
         <div class="task-actions">
-          <button class="btn-icon" title="Move to active" onclick="moveTask('queue','active','${t.id}')">â–²</button>
-          <button class="btn-icon complete" title="Mark complete" onclick="completeTask('queue','${t.id}')">âœ“</button>
-          <button class="btn-icon delete" title="Delete" onclick="deleteTask('queue','${t.id}')">âœ•</button>
+          <button class="btn-icon" title="Move to active" onclick="moveTask('queue','active','${t.id}')">▲</button>
+          <button class="btn-icon complete" title="Mark complete" onclick="completeTask('queue','${t.id}')">✓</button>
+          <button class="btn-icon delete" title="Delete" onclick="deleteTask('queue','${t.id}')">✕</button>
         </div>
       </div>
     `).join('');
@@ -1130,7 +1134,7 @@
     });
   }
 
-  /* â”€â”€ DONE LIST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── DONE LIST ────────────────────────────────────────── */
   function renderDone() {
     const el = document.getElementById('list-done');
     document.getElementById('count-done').textContent = state.done.length;
@@ -1142,19 +1146,19 @@
     const sorted = [...state.done].reverse();
     el.innerHTML = sorted.map(t => `
       <div class="task-card" data-id="${t.id}" data-list="done">
-        <span class="done-check">âœ…</span>
+        <span class="done-check">✅</span>
         <div class="task-info">
           <div class="task-name" style="color:var(--text-muted);text-decoration:line-through">${esc(t.name)}</div>
           <div class="done-time">Completed at ${fmtTime(t.ts || Date.now())}</div>
         </div>
         <div class="task-actions">
-          <button class="btn-icon delete" title="Remove" onclick="deleteTask('done','${t.id}')">âœ•</button>
+          <button class="btn-icon delete" title="Remove" onclick="deleteTask('done','${t.id}')">✕</button>
         </div>
       </div>
     `).join('');
   }
 
-  /* â”€â”€ ACTION ITEMS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── ACTION ITEMS ─────────────────────────────────────── */
   function renderAction() {
     const el = document.getElementById('list-action');
     const totalItems = state.phases.reduce((a, p) => a + p.items.length, 0);
@@ -1169,7 +1173,7 @@
           <div class="phase-header" onclick="togglePhase('${phase.id}')">
             <span class="phase-name">${esc(phase.name)}</span>
             <span class="phase-progress">${done}/${total}</span>
-            <span class="phase-chevron ${phase.open ? 'open' : ''}">â–¶</span>
+            <span class="phase-chevron ${phase.open ? 'open' : ''}">▶</span>
           </div>
           ${phase.open ? `
           <div class="phase-items">
@@ -1186,7 +1190,7 @@
     }).join('');
   }
 
-  /* â”€â”€ RENDER ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── RENDER ALL ───────────────────────────────────────── */
   function renderAll() {
     renderStatus();
     renderActive();
@@ -1196,7 +1200,7 @@
     renderStats();
   }
 
-  /* â”€â”€ ACTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── ACTIONS ──────────────────────────────────────────── */
   window.completeTask = function (list, id) {
     const arr = state[list];
     const idx = arr.findIndex(t => t.id === id);
@@ -1206,7 +1210,7 @@
     state.done.push(task);
     save(state);
     renderAll();
-    showToast('âœ… Task completed!');
+    showToast('✅ Task completed!');
   };
 
   window.moveTask = function (from, to, id) {
@@ -1239,10 +1243,10 @@
     save(state);
     renderAction();
     renderStats();
-    if (checked) showToast('âœ… Action item checked off!');
+    if (checked) showToast('✅ Action item checked off!');
   };
 
-  /* â”€â”€ MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── MODAL ────────────────────────────────────────────── */
   const overlay = document.getElementById('modal-overlay');
 
   document.getElementById('fab-open').addEventListener('click', () => {
@@ -1282,7 +1286,7 @@
     renderAll();
     overlay.classList.remove('open');
     clearModal();
-    showToast('âš”ï¸ Task added!');
+    showToast('⚔️ Task added!');
   }
 
   function clearModal() {
@@ -1291,7 +1295,7 @@
     document.getElementById('new-task-cat').value  = 'queue';
   }
 
-  /* â”€â”€ ESCAPE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── ESCAPE ───────────────────────────────────────────── */
   function esc(str) {
     return String(str)
       .replace(/&/g, '&amp;')
@@ -1300,13 +1304,13 @@
       .replace(/"/g, '&quot;');
   }
 
-  /* â”€â”€ CLOCK TICKER (updates "processing" feel) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── CLOCK TICKER (updates "processing" feel) ────────── */
   // Re-render active panel every 30s to keep shimmer fresh
   setInterval(() => {
     renderStats();
   }, 30000);
 
-  /* â”€â”€ BOOT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── BOOT ─────────────────────────────────────────────── */
   renderAll();
 
 })();
