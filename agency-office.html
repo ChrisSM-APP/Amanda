@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE ALLPROPAY AGENCY — Command Center</title>
+<style>
+  :root {
+    --cyan: #00e5ff;
+    --cyan-dim: #0097a7;
+    --cyan-glow: rgba(0, 229, 255, 0.3);
+    --green: #00ff88;
+    --green-dim: #00b85c;
+    --green-glow: rgba(0, 255, 136, 0.3);
+    --gold: #ffd700;
+    --gold-glow: rgba(255, 215, 0, 0.4);
+    --red: #ff3860;
+    --bg: #040d14;
+    --bg2: #071520;
+    --bg3: #0a1f30;
+    --panel: #071825;
+    --border: rgba(0, 229, 255, 0.2);
+    --text: #c8e8f0;
+    --text-dim: #4a7a8a;
+    --font: 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(0,229,255,0.06) 0%, transparent 70%),
+      linear-gradient(180deg, #040d14 0%, #061018 100%);
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(7,24,37,0.95);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    text-shadow: 0 0 20px var(--cyan);
+    text-transform: uppercase;
+  }
+
+  .logo-sub {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .header-time {
+    text-align: right;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+
+  .header-time .clock {
+    font-size: 22px;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    display: block;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    background: rgba(7,24,37,0.8);
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 12px 24px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    animation: scanline 3s linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .stat-icon {
+    font-size: 20px;
+    opacity: 0.8;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--cyan);
+    text-shadow: 0 0 15px var(--cyan);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-value.green { color: var(--green); text-shadow: 0 0 15px var(--green); }
+  .stat-value.gold { color: var(--gold); text-shadow: 0 0 15px var(--gold); }
+
+  /* MAIN LAYOUT */
+  .main {
+    padding: 32px;
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* OFFICE FLOOR */
+  .office-floor {
+    position: relative;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    min-height: 580px;
+    overflow: hidden;
+  }
+
+  .office-floor::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .office-floor-label {
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* AGENT GRID LAYOUT */
+  .agent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+  }
+
+  /* DATA TRANSFER LINES (SVG canvas overlay) */
+  .lines-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* STATION BASE */
+  .station {
+    position: relative;
+    z-index: 2;
+    width: 220px;
+  }
+
+  .station.max-station {
+    width: 280px;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  /* Positioning via grid areas */
+  .station[data-pos="tl"] { grid-column: 1; grid-row: 1; }
+  .station[data-pos="tc"] { grid-column: 2; grid-row: 1; }
+  .station[data-pos="tr"] { grid-column: 3; grid-row: 1; }
+  .station[data-pos="bl"] { grid-column: 1; grid-row: 3; }
+  .station[data-pos="bc"] { grid-column: 2; grid-row: 3; }
+  .station[data-pos="br"] { grid-column: 3; grid-row: 3; }
+
+  /* STATION CARD */
+  .station-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .station-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.4;
+  }
+
+  .station-card.working {
+    border-color: rgba(0, 255, 136, 0.4);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.1), inset 0 0 20px rgba(0, 255, 136, 0.03);
+    animation: workingPulse 2s ease-in-out infinite;
+  }
+
+  .station-card.complete {
+    border-color: rgba(0, 229, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
+  }
+
+  .station-card.idle {
+    border-color: rgba(0, 229, 255, 0.1);
+    opacity: 0.75;
+  }
+
+  @keyframes workingPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.1), inset 0 0 20px rgba(0, 255, 136, 0.03); }
+    50% { box-shadow: 0 0 35px rgba(0, 255, 136, 0.25), inset 0 0 30px rgba(0, 255, 136, 0.07); }
+  }
+
+  /* MAX CARD */
+  .station-card.max-card {
+    background: linear-gradient(135deg, #071825 0%, #0a2035 100%);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.15), 0 0 80px rgba(0, 229, 255, 0.1);
+    animation: maxPulse 3s ease-in-out infinite;
+    padding: 20px;
+  }
+
+  @keyframes maxPulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.15), 0 0 80px rgba(0, 229, 255, 0.1); }
+    50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.3), 0 0 100px rgba(0, 229, 255, 0.2); }
+  }
+
+  /* AGENT FIGURE */
+  .agent-figure {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .agent-avatar {
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+
+  .max-avatar {
+    width: 68px;
+    height: 68px;
+  }
+
+  /* STATUS LIGHT */
+  .status-light {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .status-light.working {
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green), 0 0 16px var(--green-glow);
+    animation: blink 1.2s ease-in-out infinite;
+  }
+
+  .status-light.idle {
+    background: var(--text-dim);
+    box-shadow: none;
+  }
+
+  .status-light.complete {
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan), 0 0 16px var(--cyan-glow);
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* STATION CONTENT */
+  .station-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .agent-name {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-shadow: 0 0 10px var(--cyan-glow);
+  }
+
+  .agent-name.gold {
+    color: var(--gold);
+    text-shadow: 0 0 12px var(--gold-glow);
+  }
+
+  .agent-role {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .task-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .task-text {
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 33px;
+    border-left: 2px solid var(--cyan-dim);
+    padding-left: 8px;
+    margin-bottom: 12px;
+  }
+
+  .station-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .status-badge.working { color: var(--green); }
+  .status-badge.idle { color: var(--text-dim); }
+  .status-badge.complete { color: var(--cyan); }
+
+  .tasks-done {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+
+  .tasks-done span {
+    color: var(--cyan);
+    font-weight: bold;
+  }
+
+  /* MONITOR SCREEN (mini) */
+  .mini-screen {
+    background: #020a10;
+    border-radius: 4px;
+    height: 30px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(0,229,255,0.15);
+  }
+
+  .mini-screen-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan-dim), var(--cyan));
+    animation: screenLoad 2.5s ease-in-out infinite;
+  }
+
+  @keyframes screenLoad {
+    0% { width: 15%; opacity: 0.5; }
+    50% { width: 85%; opacity: 1; }
+    100% { width: 15%; opacity: 0.5; }
+  }
+
+  .mini-screen-dots {
+    display: flex;
+    gap: 3px;
+    padding: 6px 8px 0;
+  }
+
+  .mini-screen-dots span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--cyan);
+    opacity: 0.4;
+    animation: dotPulse 1.5s ease-in-out infinite;
+  }
+
+  .mini-screen-dots span:nth-child(2) { animation-delay: 0.3s; }
+  .mini-screen-dots span:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes dotPulse {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  /* MAX SPECIFIC */
+  .commanding-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(90deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+    border: 1px solid rgba(255,215,0,0.4);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+
+  .commanding-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 6px var(--gold);
+    animation: blink 0.8s ease-in-out infinite;
+  }
+
+  .max-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  .max-stat {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .max-stat-val {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--gold);
+    text-shadow: 0 0 10px var(--gold-glow);
+    display: block;
+    line-height: 1;
+  }
+
+  .max-stat-lbl {
+    font-size: 8px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* MISSION LOG */
+  .mission-log {
+    background: #020a10;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .mission-log-header {
+    padding: 6px 12px;
+    background: rgba(0,229,255,0.05);
+    border-bottom: 1px solid var(--border);
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mission-log-header::before {
+    content: '●';
+    color: var(--green);
+    font-size: 8px;
+    animation: blink 1s infinite;
+  }
+
+  .mission-log-body {
+    height: 80px;
+    overflow: hidden;
+    padding: 8px 12px;
+    position: relative;
+  }
+
+  .log-entry {
+    font-size: 10px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.5s;
+  }
+
+  .log-entry .log-time {
+    color: var(--cyan-dim);
+    margin-right: 6px;
+  }
+
+  .log-entry .log-agent {
+    color: var(--green);
+    font-weight: bold;
+    margin-right: 4px;
+  }
+
+  /* BOTTOM SECTION */
+  .bottom-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* DEPLOY BUTTON */
+  .deploy-section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .deploy-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .deploy-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.1), rgba(0,229,255,0.05));
+    border: 1px solid var(--cyan);
+    border-radius: 8px;
+    padding: 14px 32px;
+    color: var(--cyan);
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 0 20px rgba(0,229,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .deploy-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,229,255,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .deploy-btn:hover {
+    background: linear-gradient(135deg, rgba(0,229,255,0.2), rgba(0,229,255,0.1));
+    box-shadow: 0 0 40px rgba(0,229,255,0.3), 0 0 80px rgba(0,229,255,0.1);
+    transform: translateY(-1px);
+  }
+
+  .deploy-btn:hover::before { left: 100%; }
+
+  .deploy-btn:active { transform: translateY(0); }
+
+  .deploy-btn-icon {
+    font-size: 18px;
+  }
+
+  .deploy-sub {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+
+  /* ACTIVITY FEED */
+  .activity-feed {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .activity-feed-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .activity-feed-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .feed-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,229,255,0.05);
+    font-size: 11px;
+    color: var(--text);
+    animation: feedIn 0.5s ease;
+  }
+
+  @keyframes feedIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .feed-item:last-child { border-bottom: none; }
+
+  .feed-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .feed-dot.green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .feed-dot.cyan { background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+  .feed-dot.gold { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+
+  .feed-time {
+    color: var(--text-dim);
+    font-size: 10px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .feed-text {
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  .feed-text strong {
+    color: var(--cyan);
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal {
+    background: var(--bg2);
+    border: 1px solid var(--cyan);
+    border-radius: 12px;
+    width: 480px;
+    max-width: 90vw;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(0,229,255,0.2), 0 0 120px rgba(0,229,255,0.05);
+    animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes modalIn {
+    from { transform: scale(0.9) translateY(-20px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, rgba(0,229,255,0.1), rgba(0,229,255,0.02));
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal-title {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    text-shadow: 0 0 10px var(--cyan-glow);
+    text-transform: uppercase;
+  }
+
+  .modal-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .modal-close:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+
+  .modal-body {
+    padding: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: #020a10;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 12px;
+    letter-spacing: 1px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 15px rgba(0,229,255,0.1);
+  }
+
+  .form-select option {
+    background: #020a10;
+  }
+
+  .form-textarea {
+    height: 80px;
+    resize: vertical;
+  }
+
+  .modal-footer {
+    padding: 16px 24px 24px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  .btn-cancel {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 11px;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+  }
+
+  .btn-cancel:hover {
+    border-color: var(--text-dim);
+    color: var(--text);
+  }
+
+  .btn-deploy {
+    background: linear-gradient(135deg, rgba(0,229,255,0.2), rgba(0,229,255,0.05));
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    box-shadow: 0 0 15px rgba(0,229,255,0.1);
+  }
+
+  .btn-deploy:hover {
+    box-shadow: 0 0 30px rgba(0,229,255,0.3);
+    transform: translateY(-1px);
+  }
+
+  /* SCANNING LINE */
+  .scan-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(0,229,255,0.4), transparent);
+    animation: scanTop 8s linear infinite;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  @keyframes scanTop {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100vw); }
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    opacity: 0.5;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .stats-bar { flex-wrap: wrap; }
+    .stat-item { min-width: 50%; }
+    .agent-grid { grid-template-columns: 1fr 1fr; }
+    .station.max-station { grid-column: 1 / -1; width: 100%; }
+    .station[data-pos="tl"], .station[data-pos="tc"], .station[data-pos="tr"],
+    .station[data-pos="bl"], .station[data-pos="bc"], .station[data-pos="br"] {
+      grid-column: auto; grid-row: auto;
+    }
+    .bottom-section { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scan-overlay"></div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <svg class="logo-icon" viewBox="0 0 36 36" fill="none">
+      <polygon points="18,2 34,10 34,26 18,34 2,26 2,10" fill="none" stroke="#00e5ff" stroke-width="1.5" opacity="0.6"/>
+      <polygon points="18,6 30,12 30,24 18,30 6,24 6,12" fill="none" stroke="#00e5ff" stroke-width="1"/>
+      <circle cx="18" cy="18" r="5" fill="#00e5ff" opacity="0.9"/>
+      <circle cx="18" cy="18" r="8" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.5" stroke-dasharray="4 4"/>
+    </svg>
+    <div>
+      <div class="logo-text">AllProPay Agency</div>
+      <div class="logo-sub">Command Center — Operational</div>
+    </div>
+  </div>
+  <div class="header-time">
+    <span class="clock" id="clock">--:--:--</span>
+    <span id="date-display">Loading...</span>
+  </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-icon">⚡</span>
+    <div>
+      <span class="stat-label">Agents Online</span>
+      <span class="stat-value green" id="agents-online">4</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">⚙️</span>
+    <div>
+      <span class="stat-label">Tasks Running</span>
+      <span class="stat-value" id="tasks-running">3</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">✅</span>
+    <div>
+      <span class="stat-label">Completed Today</span>
+      <span class="stat-value gold" id="completed-today">7</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">🕐</span>
+    <div>
+      <span class="stat-label">Uptime</span>
+      <span class="stat-value" id="uptime">06:42:17</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- OFFICE FLOOR -->
+  <div class="office-floor">
+    <div class="office-floor-label">◈ AGENCY FLOOR — LIVE VIEW</div>
+
+    <!-- SVG Lines Canvas -->
+    <svg class="lines-canvas" id="lines-canvas"></svg>
+
+    <div class="agent-grid" id="agent-grid">
+
+      <!-- SCOUT — Top Left -->
+      <div class="station" data-pos="tl" data-agent="SCOUT" id="station-scout">
+        <div class="station-card working">
+          <div class="agent-figure">
+            <svg class="agent-avatar" viewBox="0 0 48 48" fill="none">
+              <!-- Body -->
+              <rect x="16" y="20" width="16" height="18" rx="3" fill="#071825" stroke="#00e5ff" stroke-width="1.5"/>
+              <!-- Head -->
+              <rect x="18" y="10" width="12" height="11" rx="3" fill="#071825" stroke="#00e5ff" stroke-width="1.5"/>
+              <!-- Eyes -->
+              <circle cx="21" cy="15" r="1.5" fill="#00e5ff"/>
+              <circle cx="27" cy="15" r="1.5" fill="#00e5ff"/>
+              <!-- Arms -->
+              <rect x="8" y="21" width="8" height="4" rx="2" fill="#071825" stroke="#00e5ff" stroke-width="1"/>
+              <rect x="32" y="21" width="8" height="4" rx="2" fill="#071825" stroke="#00e5ff" stroke-width="1"/>
+              <!-- Legs -->
+              <rect x="17" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#00e5ff" stroke-width="1"/>
+              <rect x="26" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#00e5ff" stroke-width="1"/>
+              <!-- Chest detail -->
+              <rect x="20" y="24" width="8" height="6" rx="1" fill="#00e5ff" opacity="0.2" stroke="#00e5ff" stroke-width="0.5"/>
+            </svg>
+          </div>
+          <div class="mini-screen">
+            <div class="mini-screen-dots"><span></span><span></span><span></span></div>
+            <div class="mini-screen-bar" style="margin-top:2px"></div>
+          </div>
+          <div class="station-header">
+            <span class="agent-name">SCOUT</span>
+          </div>
+          <div class="agent-role">Sales / Data Agent</div>
+          <div class="task-label">Current Task</div>
+          <div class="task-text">Analyzing payroll + compensation data</div>
+          <div class="station-footer">
+            <div class="status-badge working">
+              <div class="status-light working"></div>
+              Working
+            </div>
+            <div class="tasks-done">Today: <span>2</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CIPHER — Top Center -->
+      <div class="station" data-pos="tc" data-agent="CIPHER" id="station-cipher">
+        <div class="station-card complete">
+          <div class="agent-figure">
+            <svg class="agent-avatar" viewBox="0 0 48 48" fill="none">
+              <rect x="16" y="20" width="16" height="18" rx="3" fill="#071825" stroke="#00e5ff" stroke-width="1.5"/>
+              <rect x="18" y="10" width="12" height="11" rx="3" fill="#071825" stroke="#00e5ff" stroke-width="1.5"/>
+              <circle cx="21" cy="15" r="1.5" fill="#00e5ff"/>
+              <circle cx="27" cy="15" r="1.5" fill="#00e5ff"/>
+              <rect x="8" y="21" width="8" height="4" rx="2" fill="#071825" stroke="#00e5ff" stroke-width="1"/>
+              <rect x="32" y="21" width="8" height="4" rx="2" fill="#071825" stroke="#00e5ff" stroke-width="1"/>
+              <rect x="17" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#00e5ff" stroke-width="1"/>
+              <rect x="26" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#00e5ff" stroke-width="1"/>
+              <!-- Research icon on chest -->
+              <circle cx="24" cy="27" r="3" fill="none" stroke="#00e5ff" stroke-width="1"/>
+              <line x1="26.2" y1="29.2" x2="28" y2="31" stroke="#00e5ff" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="mini-screen">
+            <div class="mini-screen-dots"><span></span><span></span><span></span></div>
+          </div>
+          <div class="station-header">
+            <span class="agent-name">CIPHER</span>
+          </div>
+          <div class="agent-role">Research Agent</div>
+          <div class="task-label">Current Task</div>
+          <div class="task-text">Researching lead gen + vertical campaigns</div>
+          <div class="station-footer">
+            <div class="status-badge complete">
+              <div class="status-light complete"></div>
+              ✓ Complete
+            </div>
+            <div class="tasks-done">Today: <span>3</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORGE — Top Right -->
+      <div class="station" data-pos="tr" data-agent="FORGE" id="station-forge">
+        <div class="station-card working">
+          <div class="agent-figure">
+            <svg class="agent-avatar" viewBox="0 0 48 48" fill="none">
+              <rect x="16" y="20" width="16" height="18" rx="3" fill="#071825" stroke="#00ff88" stroke-width="1.5"/>
+              <rect x="18" y="10" width="12" height="11" rx="3" fill="#071825" stroke="#00ff88" stroke-width="1.5"/>
+              <circle cx="21" cy="15" r="1.5" fill="#00ff88"/>
+              <circle cx="27" cy="15" r="1.5" fill="#00ff88"/>
+              <!-- Bulkier arms (builder) -->
+              <rect x="7" y="20" width="9" height="5" rx="2" fill="#071825" stroke="#00ff88" stroke-width="1"/>
+              <rect x="32" y="20" width="9" height="5" rx="2" fill="#071825" stroke="#00ff88" stroke-width="1"/>
+              <rect x="17" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#00ff88" stroke-width="1"/>
+              <rect x="26" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#00ff88" stroke-width="1"/>
+              <!-- Wrench icon -->
+              <path d="M22 24 L26 28 M26 24 L22 28" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="mini-screen">
+            <div class="mini-screen-dots"><span style="background:var(--green)"></span><span style="background:var(--green)"></span><span style="background:var(--green)"></span></div>
+            <div class="mini-screen-bar" style="margin-top:2px; background: linear-gradient(90deg, var(--green-dim), var(--green));"></div>
+          </div>
+          <div class="station-header">
+            <span class="agent-name" style="color:var(--green);text-shadow:0 0 10px var(--green-glow)">FORGE</span>
+          </div>
+          <div class="agent-role">Build Agent</div>
+          <div class="task-label">Current Task</div>
+          <div class="task-text">Building proposal generator tool</div>
+          <div class="station-footer">
+            <div class="status-badge working">
+              <div class="status-light working"></div>
+              Working
+            </div>
+            <div class="tasks-done">Today: <span>1</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAX — CENTER -->
+      <div class="station max-station" data-agent="MAX" id="station-max">
+        <div class="station-card max-card">
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:12px;">
+            <div class="agent-figure" style="margin-bottom:0">
+              <svg class="max-avatar" viewBox="0 0 68 68" fill="none">
+                <!-- Optimus-esque figure - larger + more heroic -->
+                <!-- Legs -->
+                <rect x="22" y="53" width="8" height="12" rx="3" fill="#071825" stroke="#ffd700" stroke-width="1.5"/>
+                <rect x="38" y="53" width="8" height="12" rx="3" fill="#071825" stroke="#ffd700" stroke-width="1.5"/>
+                <!-- Body/Torso -->
+                <rect x="18" y="28" width="32" height="26" rx="4" fill="#071825" stroke="#ffd700" stroke-width="2"/>
+                <!-- Chest plate glow -->
+                <rect x="24" y="33" width="20" height="14" rx="2" fill="rgba(255,215,0,0.1)" stroke="#ffd700" stroke-width="1"/>
+                <rect x="28" y="36" width="12" height="8" rx="1" fill="#ffd700" opacity="0.2"/>
+                <!-- Energy core -->
+                <circle cx="34" cy="40" r="4" fill="rgba(0,229,255,0.3)" stroke="#00e5ff" stroke-width="1.5"/>
+                <circle cx="34" cy="40" r="2" fill="#00e5ff" opacity="0.8"/>
+                <!-- Shoulders (wide) -->
+                <rect x="5" y="27" width="13" height="8" rx="3" fill="#071825" stroke="#ffd700" stroke-width="1.5"/>
+                <rect x="50" y="27" width="13" height="8" rx="3" fill="#071825" stroke="#ffd700" stroke-width="1.5"/>
+                <!-- Arms -->
+                <rect x="6" y="34" width="12" height="6" rx="3" fill="#071825" stroke="#ffd700" stroke-width="1"/>
+                <rect x="50" y="34" width="12" height="6" rx="3" fill="#071825" stroke="#ffd700" stroke-width="1"/>
+                <!-- Neck -->
+                <rect x="29" y="22" width="10" height="7" rx="2" fill="#071825" stroke="#ffd700" stroke-width="1"/>
+                <!-- Head -->
+                <rect x="20" y="8" width="28" height="22" rx="5" fill="#071825" stroke="#ffd700" stroke-width="2"/>
+                <!-- Faceplate -->
+                <rect x="24" y="14" width="20" height="10" rx="2" fill="rgba(0,229,255,0.1)" stroke="#00e5ff" stroke-width="1"/>
+                <!-- Eyes (glowing visor) -->
+                <rect x="25" y="16" width="6" height="4" rx="1" fill="#00e5ff" opacity="0.9"/>
+                <rect x="37" y="16" width="6" height="4" rx="1" fill="#00e5ff" opacity="0.9"/>
+                <!-- Crest -->
+                <polygon points="34,4 37,9 31,9" fill="#ffd700" opacity="0.8"/>
+              </svg>
+            </div>
+            <div>
+              <div class="commanding-badge">
+                <span class="commanding-dot"></span>
+                Commanding
+              </div>
+              <div class="agent-name gold" style="font-size:20px;letter-spacing:3px;">MAXIMUS</div>
+              <div class="agent-role" style="margin-bottom:0">Orchestrator / Command AI</div>
+            </div>
+          </div>
+
+          <div class="max-stats">
+            <div class="max-stat">
+              <span class="max-stat-val" id="max-active">3</span>
+              <span class="max-stat-lbl">Active Agents</span>
+            </div>
+            <div class="max-stat">
+              <span class="max-stat-val" id="max-tasks">7</span>
+              <span class="max-stat-lbl">Tasks Done</span>
+            </div>
+          </div>
+
+          <div class="mission-log">
+            <div class="mission-log-header">Mission Log — Live</div>
+            <div class="mission-log-body" id="mission-log"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RELAY — Bottom Left -->
+      <div class="station" data-pos="bl" data-agent="RELAY" id="station-relay">
+        <div class="station-card idle">
+          <div class="agent-figure">
+            <svg class="agent-avatar" viewBox="0 0 48 48" fill="none">
+              <rect x="16" y="20" width="16" height="18" rx="3" fill="#071825" stroke="#4a7a8a" stroke-width="1.5"/>
+              <rect x="18" y="10" width="12" height="11" rx="3" fill="#071825" stroke="#4a7a8a" stroke-width="1.5"/>
+              <circle cx="21" cy="15" r="1.5" fill="#4a7a8a"/>
+              <circle cx="27" cy="15" r="1.5" fill="#4a7a8a"/>
+              <rect x="8" y="21" width="8" height="4" rx="2" fill="#071825" stroke="#4a7a8a" stroke-width="1"/>
+              <rect x="32" y="21" width="8" height="4" rx="2" fill="#071825" stroke="#4a7a8a" stroke-width="1"/>
+              <rect x="17" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#4a7a8a" stroke-width="1"/>
+              <rect x="26" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#4a7a8a" stroke-width="1"/>
+              <!-- Signal waves -->
+              <path d="M19 27 Q24 24 29 27" stroke="#4a7a8a" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+          <div class="mini-screen" style="opacity:0.4">
+            <div class="mini-screen-dots"><span style="opacity:0.2"></span><span style="opacity:0.2"></span><span style="opacity:0.2"></span></div>
+          </div>
+          <div class="station-header">
+            <span class="agent-name" style="color:var(--text-dim)">RELAY</span>
+          </div>
+          <div class="agent-role">Content Agent</div>
+          <div class="task-label">Current Task</div>
+          <div class="task-text" style="color:var(--text-dim);border-color:var(--text-dim)">Drafting morning brief system</div>
+          <div class="station-footer">
+            <div class="status-badge idle">
+              <div class="status-light idle"></div>
+              Standby
+            </div>
+            <div class="tasks-done">Today: <span>1</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacer center bottom replaced by DISPATCH -->
+      <div class="station" data-pos="bc" data-agent="DISPATCH" id="station-dispatch">
+        <div class="station-card working">
+          <div class="agent-figure">
+            <svg class="agent-avatar" viewBox="0 0 48 48" fill="none">
+              <rect x="16" y="20" width="16" height="18" rx="3" fill="#071825" stroke="#00ff88" stroke-width="1.5"/>
+              <rect x="18" y="10" width="12" height="11" rx="3" fill="#071825" stroke="#00ff88" stroke-width="1.5"/>
+              <circle cx="21" cy="15" r="1.5" fill="#00ff88"/>
+              <circle cx="27" cy="15" r="1.5" fill="#00ff88"/>
+              <rect x="8" y="21" width="8" height="4" rx="2" fill="#071825" stroke="#00ff88" stroke-width="1"/>
+              <rect x="32" y="21" width="8" height="4" rx="2" fill="#071825" stroke="#00ff88" stroke-width="1"/>
+              <rect x="17" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#00ff88" stroke-width="1"/>
+              <rect x="26" y="37" width="5" height="8" rx="2" fill="#071825" stroke="#00ff88" stroke-width="1"/>
+              <!-- Dispatch chevron -->
+              <path d="M21 25 L24 28 L27 25" stroke="#00ff88" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="mini-screen">
+            <div class="mini-screen-dots"><span style="background:var(--green)"></span><span style="background:var(--green)"></span><span style="background:var(--green)"></span></div>
+            <div class="mini-screen-bar" style="margin-top:2px; background: linear-gradient(90deg, var(--green-dim), var(--green));"></div>
+          </div>
+          <div class="station-header">
+            <span class="agent-name" style="color:var(--green);text-shadow:0 0 10px var(--green-glow)">DISPATCH</span>
+          </div>
+          <div class="agent-role">Ops Agent</div>
+          <div class="task-label">Current Task</div>
+          <div class="task-text">Building campaign builder from 232K leads</div>
+          <div class="station-footer">
+            <div class="status-badge working">
+              <div class="status-light working"></div>
+              Working
+            </div>
+            <div class="tasks-done">Today: <span>1</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty bottom-right placeholder -->
+      <div class="station" data-pos="br" style="visibility:hidden;">
+        <div class="station-card"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM SECTION -->
+  <div class="bottom-section">
+
+    <div class="deploy-section">
+      <div class="deploy-label">◈ Agent Deployment Console</div>
+      <button class="deploy-btn" onclick="openModal()">
+        <span class="deploy-btn-icon">⚡</span>
+        Deploy Agent
+      </button>
+      <div class="deploy-sub">Assign a new agent to a mission directive</div>
+    </div>
+
+    <div class="activity-feed">
+      <div class="activity-feed-title">Recent Activity</div>
+      <div id="activity-feed-items"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">AllProPay Agency Command Center — All Systems Operational — © 2026 AllProPay</div>
+
+<!-- DEPLOY MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalIfBg(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">⚡ Deploy Agent</span>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Agent Designation</label>
+        <select class="form-select" id="deploy-agent">
+          <option value="">— Select Agent —</option>
+          <option>SCOUT — Sales / Data</option>
+          <option>FORGE — Build / Dev</option>
+          <option>CIPHER — Research</option>
+          <option>RELAY — Content</option>
+          <option>DISPATCH — Ops</option>
+          <option>NEW AGENT — Custom</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mission Directive</label>
+        <textarea class="form-textarea" id="deploy-task" placeholder="Describe the task or mission to assign..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Priority Level</label>
+        <select class="form-select">
+          <option>🔴 Critical</option>
+          <option selected>🟡 Standard</option>
+          <option>🟢 Background</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-deploy" onclick="deployAgent()">⚡ Deploy Now</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CLOCK & UPTIME
+// ============================================================
+const startTime = Date.now() - (6 * 3600000 + 42 * 60000 + 17000);
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('en-US', { hour12: false });
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('date-display').textContent =
+    `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()} ${now.getFullYear()}`;
+
+  const uptimeMs = Date.now() - startTime;
+  const h = Math.floor(uptimeMs / 3600000);
+  const m = Math.floor((uptimeMs % 3600000) / 60000);
+  const s = Math.floor((uptimeMs % 60000) / 1000);
+  document.getElementById('uptime').textContent =
+    String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+// ============================================================
+// MISSION LOG
+// ============================================================
+const logEntries = [
+  { time: '09:14', agent: 'FORGE', msg: 'Initialized proposal generator — schema loaded' },
+  { time: '09:22', agent: 'CIPHER', msg: 'Vertical analysis complete: payroll, dental, auto' },
+  { time: '09:31', agent: 'SCOUT', msg: 'Pulled 847 merchant records from HubSpot CRM' },
+  { time: '09:38', agent: 'DISPATCH', msg: 'Segmented 232K leads into 14 industry buckets' },
+  { time: '09:45', agent: 'CIPHER', msg: 'Competitor pricing matrix compiled — 6 processors' },
+  { time: '09:52', agent: 'RELAY', msg: 'Morning brief template drafted — awaiting review' },
+  { time: '10:03', agent: 'MAX', msg: 'Directive issued: prioritize proposal tool + lead campaign' },
+  { time: '10:11', agent: 'FORGE', msg: 'Building UI components for proposal generator v0.2' },
+  { time: '10:19', agent: 'CIPHER', msg: 'Lead gen vertical report — 3 reports complete' },
+  { time: '10:27', agent: 'SCOUT', msg: 'Compensation analysis: avg interchange spread 0.42%' },
+  { time: '10:35', agent: 'DISPATCH', msg: 'Campaign sequences mapped — Zoho integration in queue' },
+  { time: '10:44', agent: 'MAX', msg: 'Status check: 3 active, 1 standby, all on directive' },
+];
+
+let logIndex = 0;
+const logEl = document.getElementById('mission-log');
+
+function addLogEntry() {
+  if (logIndex >= logEntries.length) logIndex = 0;
+  const e = logEntries[logIndex++];
+  const div = document.createElement('div');
+  div.className = 'log-entry';
+  div.innerHTML = `<span class="log-time">${e.time}</span><span class="log-agent">[${e.agent}]</span>${e.msg}`;
+  logEl.insertBefore(div, logEl.firstChild);
+  while (logEl.children.length > 4) {
+    logEl.removeChild(logEl.lastChild);
+  }
+}
+
+// Prime log
+for (let i = 0; i < 4; i++) addLogEntry();
+setInterval(addLogEntry, 5000);
+
+// ============================================================
+// ACTIVITY FEED
+// ============================================================
+const activities = [
+  { color: 'green', time: '10:44', text: '<strong>DISPATCH</strong> mapped 14 campaign sequences from lead segments' },
+  { color: 'cyan', time: '10:38', text: '<strong>CIPHER</strong> completed vertical research — 3 reports filed' },
+  { color: 'green', time: '10:31', text: '<strong>FORGE</strong> committed proposal tool v0.2 components' },
+  { color: 'gold', time: '10:22', text: '<strong>MAX</strong> issued updated directive: lead campaign priority ↑' },
+  { color: 'cyan', time: '10:11', text: '<strong>SCOUT</strong> analyzed 847 merchant records — avg spread 0.42%' },
+  { color: 'green', time: '09:52', text: '<strong>RELAY</strong> morning brief template drafted and staged' },
+];
+
+const feedEl = document.getElementById('activity-feed-items');
+activities.forEach(a => {
+  const div = document.createElement('div');
+  div.className = 'feed-item';
+  div.innerHTML = `
+    <div class="feed-dot ${a.color}"></div>
+    <span class="feed-time">${a.time}</span>
+    <span class="feed-text">${a.text}</span>
+  `;
+  feedEl.appendChild(div);
+});
+
+// ============================================================
+// DATA TRANSFER LINES (SVG)
+// ============================================================
+function drawLines() {
+  const canvas = document.getElementById('lines-canvas');
+  const maxStation = document.getElementById('station-max');
+  const agents = ['station-scout','station-cipher','station-forge','station-dispatch'];
+  const workingAgents = ['station-scout','station-forge','station-dispatch'];
+
+  const maxRect = maxStation.getBoundingClientRect();
+  const canvasRect = canvas.getBoundingClientRect();
+
+  const cx = maxRect.left - canvasRect.left + maxRect.width / 2;
+  const cy = maxRect.top - canvasRect.top + maxRect.height / 2;
+
+  canvas.innerHTML = '';
+
+  agents.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const x = r.left - canvasRect.left + r.width / 2;
+    const y = r.top - canvasRect.top + r.height / 2;
+    const isWorking = workingAgents.includes(id);
+    const color = isWorking ? '#00ff88' : '#00e5ff';
+    const opacity = isWorking ? '0.35' : '0.15';
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', cx);
+    line.setAttribute('y1', cy);
+    line.setAttribute('x2', x);
+    line.setAttribute('y2', y);
+    line.setAttribute('stroke', color);
+    line.setAttribute('stroke-width', '1');
+    line.setAttribute('opacity', opacity);
+    line.setAttribute('stroke-dasharray', '6 4');
+    canvas.appendChild(line);
+
+    if (isWorking) {
+      // Animated packet dot
+      const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      circle.setAttribute('r', '3');
+      circle.setAttribute('fill', color);
+      circle.setAttribute('filter', `drop-shadow(0 0 4px ${color})`);
+      const anim = document.createElementNS('http://www.w3.org/2000/svg','animateMotion');
+      anim.setAttribute('dur', (2.5 + i * 0.7) + 's');
+      anim.setAttribute('repeatCount', 'indefinite');
+      anim.setAttribute('path', `M ${cx} ${cy} L ${x} ${y}`);
+      circle.appendChild(anim);
+      canvas.appendChild(circle);
+    }
+  });
+}
+
+// Draw on load and resize
+window.addEventListener('load', () => { setTimeout(drawLines, 100); });
+window.addEventListener('resize', drawLines);
+setTimeout(drawLines, 300);
+setInterval(drawLines, 15000);
+
+// ============================================================
+// MODAL
+// ============================================================
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+}
+
+function closeModalIfBg(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+function deployAgent() {
+  const agent = document.getElementById('deploy-agent').value;
+  const task = document.getElementById('deploy-task').value;
+  if (!agent || !task.trim()) {
+    const btn = document.querySelector('.btn-deploy');
+    btn.textContent = '⚠ Fill all fields';
+    btn.style.borderColor = '#ff3860';
+    btn.style.color = '#ff3860';
+    setTimeout(() => {
+      btn.textContent = '⚡ Deploy Now';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }, 2000);
+    return;
+  }
+  const btn = document.querySelector('.btn-deploy');
+  btn.textContent = '✓ Deployed!';
+  btn.style.borderColor = 'var(--green)';
+  btn.style.color = 'var(--green)';
+  setTimeout(() => {
+    closeModal();
+    btn.textContent = '⚡ Deploy Now';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+    document.getElementById('deploy-agent').value = '';
+    document.getElementById('deploy-task').value = '';
+
+    // Add to activity feed
+    const agentName = agent.split(' — ')[0];
+    const div = document.createElement('div');
+    div.className = 'feed-item';
+    const now = new Date();
+    const t = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+    div.innerHTML = `
+      <div class="feed-dot gold"></div>
+      <span class="feed-time">${t}</span>
+      <span class="feed-text"><strong>MAX → ${agentName}</strong> ${task.slice(0,60)}${task.length>60?'...':''}</span>
+    `;
+    feedEl.insertBefore(div, feedEl.firstChild);
+    while (feedEl.children.length > 6) feedEl.removeChild(feedEl.lastChild);
+
+  }, 1500);
+}
+
+// ESC to close modal
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
