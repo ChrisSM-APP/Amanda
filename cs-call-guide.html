@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AllProPay Call Guide</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy:   #1e3a5f;
+            --blue:   #2c5282;
+            --blue2:  #3a6aad;
+            --bg:     #eef2f7;
+            --white:  #ffffff;
+            --green:  #16a34a;
+            --amber:  #b45309;
+            --red:    #b91c1c;
+            --text:   #1a202c;
+            --muted:  #64748b;
+            --border: #dde3ec;
+            --shadow: 0 4px 12px -2px rgba(30,58,95,.12), 0 2px 4px -1px rgba(0,0,0,.06);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 80px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ─── HEADER ─── */
+        .header {
+            background: var(--navy);
+            color: #fff;
+            padding: 14px 18px 12px;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            box-shadow: 0 3px 10px rgba(0,0,0,.35);
+        }
+        .header-row { display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 17px; font-weight: 800; letter-spacing: .3px; }
+        .brand span { color: #63b3ed; }
+        .brand small { font-weight: 400; font-size: 13px; color: rgba(255,255,255,.6); }
+        .reset-btn {
+            background: rgba(255,255,255,.13);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,.28);
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s;
+            -webkit-appearance: none;
+        }
+        .reset-btn:active { background: rgba(255,255,255,.25); }
+        .call-chip {
+            margin-top: 8px;
+            font-size: 13px;
+            color: rgba(255,255,255,.8);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .call-chip strong { color: #fff; }
+        .call-chip-sep { color: rgba(255,255,255,.4); }
+
+        /* ─── PROGRESS ─── */
+        .progress-wrap {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 11px 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .progress-steps { display: flex; align-items: center; min-width: max-content; gap: 0; }
+        .p-step {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #9fb3c8;
+        }
+        .p-step.active { color: var(--blue); }
+        .p-step.done   { color: var(--green); }
+        .p-step.skip   { color: #c9d5e0; }
+        .p-dot {
+            width: 22px; height: 22px; border-radius: 50%;
+            border: 2px solid currentColor;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 800;
+            background: #fff;
+            flex-shrink: 0;
+        }
+        .p-step.active .p-dot { background: var(--blue); color: #fff; border-color: var(--blue); }
+        .p-step.done   .p-dot { background: var(--green); color: #fff; border-color: var(--green); }
+        .p-step.skip   .p-dot { background: #f1f5f9; color: #c9d5e0; border-color: #c9d5e0; }
+        .p-line { width: 22px; height: 2px; background: #dde3ec; flex-shrink: 0; }
+        .p-line.done { background: var(--green); }
+
+        /* ─── CONTENT ─── */
+        .content { padding: 16px 14px; max-width: 620px; margin: 0 auto; }
+
+        /* ─── CARDS ─── */
+        .card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 14px;
+            animation: up .22s ease;
+        }
+        @keyframes up { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+        .card-head {
+            background: var(--blue);
+            color: #fff;
+            padding: 13px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-head.navy  { background: var(--navy); }
+        .card-head.green { background: var(--green); }
+        .card-head.amber { background: #92400e; }
+        .card-head.red   { background: var(--red); }
+        .stage-badge {
+            background: rgba(255,255,255,.2);
+            border-radius: 6px;
+            padding: 2px 9px;
+            font-size: 11.5px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stage-title { font-size: 15px; font-weight: 700; flex: 1; }
+        .card-body { padding: 18px; }
+
+        /* ─── SCRIPT BOX ─── */
+        .script-box {
+            background: #f4f8ff;
+            border: 2px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+        .script-box.amber-box { background: #fffbeb; border-color: #fde68a; }
+        .script-box.green-box { background: #f0fdf4; border-color: #86efac; }
+        .script-lbl {
+            font-size: 10.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            color: var(--blue);
+            margin-bottom: 7px;
+        }
+        .script-lbl.amber-lbl { color: var(--amber); }
+        .script-lbl.green-lbl { color: var(--green); }
+        .script-txt {
+            font-size: 16.5px;
+            line-height: 1.65;
+            color: var(--text);
+        }
+        .script-txt em { color: var(--blue); font-style: normal; font-weight: 700; }
+        .script-txt p  { margin-bottom: 10px; }
+        .script-txt p:last-child { margin-bottom: 0; }
+
+        /* ─── NOTICE BOX ─── */
+        .notice {
+            border-radius: 8px;
+            padding: 11px 14px;
+            font-size: 13.5px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .notice.amber { background: #fffbeb; border: 1px solid #fde68a; color: #78350f; }
+        .notice.red   { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+        .notice.blue  { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+        .notice-icon  { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+        /* ─── OUTCOME BUTTONS ─── */
+        .outcome-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .outcome-btns { display: flex; flex-direction: column; gap: 10px; }
+        .obtn {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 15px 18px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            font-size: 15.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: filter .12s, transform .1s;
+            text-align: left;
+            width: 100%;
+            -webkit-appearance: none;
+        }
+        .obtn:active { transform: scale(.97); filter: brightness(.95); }
+        .obtn.green  { background: #dcfce7; color: #15803d; border-color: #86efac; }
+        .obtn.amber  { background: #fef9c3; color: #854d0e; border-color: #fde047; }
+        .obtn.red    { background: #fee2e2; color: var(--red); border-color: #fca5a5; }
+        .obtn.blue   { background: var(--blue); color: #fff; }
+        .obtn.grey   { background: #f1f5f9; color: var(--muted); border-color: var(--border); }
+        .obtn-icon   { font-size: 22px; flex-shrink: 0; }
+        .obtn-text   { flex: 1; }
+        .obtn-sub    { font-size: 11.5px; font-weight: 400; opacity: .75; display: block; margin-top: 2px; }
+
+        /* ─── COPY / SMS ─── */
+        .tmpl-box {
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+        }
+        .tmpl-lbl { font-size: 10.5px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; margin-bottom: 8px; }
+        .tmpl-txt { color: #f1f5f9; font-size: 14.5px; line-height: 1.65; white-space: pre-wrap; font-family: 'SF Mono', Consolas, monospace; }
+        .copy-btn {
+            width: 100%;
+            padding: 13px;
+            border-radius: 8px;
+            border: none;
+            background: var(--blue2);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+            -webkit-appearance: none;
+        }
+        .copy-btn:active { background: var(--navy); }
+        .copy-btn.copied { background: var(--green) !important; }
+
+        /* ─── FORM ─── */
+        .input-grp { margin-bottom: 12px; }
+        .input-lbl { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 5px; display: block; text-transform: uppercase; letter-spacing: .5px; }
+        .input-field {
+            width: 100%; padding: 13px 14px;
+            border: 2px solid var(--border);
+            border-radius: 9px; font-size: 15px; color: var(--text);
+            background: #fff; transition: border-color .2s;
+            -webkit-appearance: none;
+        }
+        .input-field:focus { outline: none; border-color: var(--blue); }
+        .textarea-field {
+            width: 100%; padding: 11px 13px;
+            border: 2px solid var(--border);
+            border-radius: 9px; font-size: 14px; color: var(--text);
+            background: #fff; resize: vertical; min-height: 76px;
+            font-family: inherit; transition: border-color .2s;
+            -webkit-appearance: none;
+        }
+        .textarea-field:focus { outline: none; border-color: var(--blue); }
+
+        /* ─── SECTION LABEL ─── */
+        .sec-lbl {
+            font-size: 11px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: .7px; color: var(--muted); margin-bottom: 10px;
+        }
+
+        /* ─── DIVIDER ─── */
+        .hr { height: 1px; background: var(--border); margin: 16px 0; }
+
+        /* ─── ACTION BUTTONS ─── */
+        .abtn {
+            width: 100%; padding: 14px 18px;
+            border-radius: 9px; border: none;
+            font-size: 15px; font-weight: 700;
+            cursor: pointer; transition: filter .12s, transform .1s;
+            -webkit-appearance: none;
+        }
+        .abtn:active { transform: scale(.98); filter: brightness(.93); }
+        .abtn.primary   { background: var(--navy); color: #fff; }
+        .abtn.secondary { background: #f1f5f9; color: var(--muted); border: 2px solid var(--border); }
+        .abtn.green     { background: var(--green); color: #fff; }
+        .btn-row { display: flex; gap: 10px; }
+        .btn-row .abtn { flex: 1; }
+
+        /* ─── SETUP ─── */
+        .setup-title    { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+        .setup-subtitle { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+        .start-btn {
+            width: 100%; padding: 16px;
+            background: var(--navy); color: #fff;
+            border: none; border-radius: 11px;
+            font-size: 17px; font-weight: 800;
+            cursor: pointer; transition: background .2s;
+            margin-top: 6px; -webkit-appearance: none;
+        }
+        .start-btn:active { background: var(--blue2); }
+
+        /* ─── CHECKLIST ─── */
+        .checklist { list-style: none; }
+        .checklist li {
+            display: flex; align-items: flex-start; gap: 13px;
+            padding: 12px 0; border-bottom: 1px solid var(--border);
+            font-size: 14.5px; cursor: pointer;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist input[type="checkbox"] {
+            width: 20px; height: 20px; cursor: pointer;
+            accent-color: var(--blue); flex-shrink: 0; margin-top: 2px;
+        }
+        .checklist label { cursor: pointer; line-height: 1.4; }
+
+        /* ─── TOAST ─── */
+        .toast {
+            position: fixed; bottom: 22px; left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #1e293b; color: #fff;
+            padding: 11px 22px; border-radius: 8px;
+            font-size: 14px; font-weight: 600;
+            z-index: 500; transition: transform .28s ease;
+            white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,.3);
+            pointer-events: none;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* ─── HIDDEN ─── */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<!-- ====== HEADER ====== -->
+<div class="header">
+    <div class="header-row">
+        <div class="brand">AllPro<span>Pay</span> <small>Call Guide</small></div>
+        <button class="reset-btn" onclick="confirmReset()">↺ Reset</button>
+    </div>
+    <div class="call-chip hidden" id="callChip">
+        📞 <strong id="hClientName"></strong>
+        <span class="call-chip-sep">·</span>
+        Rep: <strong id="hRepName"></strong>
+    </div>
+</div>
+
+<!-- ====== PROGRESS ====== -->
+<div class="progress-wrap hidden" id="progressWrap">
+    <div class="progress-steps" id="progressSteps"></div>
+</div>
+
+<!-- ====== CONTENT ====== -->
+<div class="content">
+
+    <!-- ── SETUP ── -->
+    <div id="s-setup">
+        <div class="card">
+            <div class="card-head navy">
+                <span class="stage-title">New Check-In Call</span>
+            </div>
+            <div class="card-body">
+                <div class="setup-subtitle">Fill in details before dialing — takes 5 seconds.</div>
+
+                <div class="input-grp">
+                    <label class="input-lbl" for="f-client">Client's First Name</label>
+                    <input id="f-client" class="input-field" type="text" placeholder="e.g. Sarah" autocomplete="off" autocapitalize="words">
+                </div>
+                <div class="input-grp">
+                    <label class="input-lbl" for="f-rep">Your Name</label>
+                    <input id="f-rep" class="input-field" type="text" placeholder="e.g. Katie" autocomplete="off" autocapitalize="words">
+                </div>
+                <div class="input-grp">
+                    <label class="input-lbl" for="f-link">Google Review Link</label>
+                    <input id="f-link" class="input-field" type="url" placeholder="https://g.page/r/..." autocomplete="off" inputmode="url">
+                </div>
+
+                <button class="start-btn" onclick="startCall()">Start Call Guide &rarr;</button>
+            </div>
+        </div>
+        <div style="text-align:center;color:var(--muted);font-size:12.5px;padding:4px 0 8px;">
+            Target 2–4 min  &middot;  Support tone, not sales  &middot;  Rep name + review link auto-saved
+        </div>
+    </div>
+
+    <!-- ── OPENING ── -->
+    <div id="s-opening" class="hidden">
+        <div class="card">
+            <div class="card-head">
+                <span class="stage-badge">Stage 1 of 5</span>
+                <span class="stage-title">Warm Opening</span>
+            </div>
+            <div class="card-body">
+                <div class="script-box">
+                    <div class="script-lbl">📞 Say This</div>
+                    <div class="script-txt" id="txt-opening"></div>
+                </div>
+                <div class="outcome-lbl">How'd they respond?</div>
+                <div class="outcome-btns">
+                    <button class="obtn green" onclick="go('checkin')">
+                        <span class="obtn-icon">✅</span>
+                        <span class="obtn-text">They're Available
+                            <span class="obtn-sub">Move to check-in</span>
+                        </span>
+                    </button>
+                    <button class="obtn amber" onclick="go('busy')">
+                        <span class="obtn-icon">📅</span>
+                        <span class="obtn-text">They're Busy
+                            <span class="obtn-sub">Get callback time + log note</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── BUSY ── -->
+    <div id="s-busy" class="hidden">
+        <div class="card">
+            <div class="card-head amber">
+                <span class="stage-badge">Callback</span>
+                <span class="stage-title">They're Busy</span>
+            </div>
+            <div class="card-body">
+                <div class="script-box amber-box">
+                    <div class="script-lbl amber-lbl">📞 Say This</div>
+                    <div class="script-txt" id="txt-busy"></div>
+                </div>
+
+                <div class="hr"></div>
+                <div class="sec-lbl">📝 Log Your Callback</div>
+
+                <div class="input-grp">
+                    <label class="input-lbl" for="f-cbtime">Callback Date / Time</label>
+                    <input id="f-cbtime" class="input-field" type="text" placeholder="e.g. Thursday after 2pm" autocomplete="off">
+                </div>
+                <div class="input-grp">
+                    <label class="input-lbl" for="f-cbnote">Notes</label>
+                    <textarea id="f-cbnote" class="textarea-field" placeholder="Tone, context, anything useful for next call…"></textarea>
+                </div>
+
+                <div class="btn-row" style="margin-top:6px;">
+                    <button class="abtn secondary" onclick="go('opening')" style="flex:.8">← Back</button>
+                    <button class="abtn primary" onclick="endBusy()" style="flex:1.5">Log & Reset ↺</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── CHECK-IN ── -->
+    <div id="s-checkin" class="hidden">
+        <div class="card">
+            <div class="card-head">
+                <span class="stage-badge">Stage 2 of 5</span>
+                <span class="stage-title">Check-In</span>
+            </div>
+            <div class="card-body">
+                <div class="script-box">
+                    <div class="script-lbl">📞 Say This</div>
+                    <div class="script-txt">How has everything been working so far? Any issues with deposits, terminals, or invoices?</div>
+                </div>
+                <div class="outcome-lbl">How's it going for them?</div>
+                <div class="outcome-btns">
+                    <button class="obtn green" onclick="go('review')">
+                        <span class="obtn-icon">👍</span>
+                        <span class="obtn-text">Going Well
+                            <span class="obtn-sub">Proceed to review ask</span>
+                        </span>
+                    </button>
+                    <button class="obtn amber" onclick="go('lukewarm')">
+                        <span class="obtn-icon">😐</span>
+                        <span class="obtn-text">Lukewarm / "It's Fine"
+                            <span class="obtn-sub">Pivot script → warm close, no review ask</span>
+                        </span>
+                    </button>
+                    <button class="obtn red" onclick="go('problem')">
+                        <span class="obtn-icon">⚠️</span>
+                        <span class="obtn-text">Has a Problem
+                            <span class="obtn-sub">Resolve mode → no referral ask</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── LUKEWARM ── -->
+    <div id="s-lukewarm" class="hidden">
+        <div class="card">
+            <div class="card-head amber">
+                <span class="stage-badge">Lukewarm Path</span>
+                <span class="stage-title">Pivot &amp; Close Warmly</span>
+            </div>
+            <div class="card-body">
+                <div class="notice amber">
+                    <span class="notice-icon">💡</span>
+                    <div>No review ask. No referral ask. Focus on understanding and leaving a positive impression.</div>
+                </div>
+
+                <div class="script-box amber-box">
+                    <div class="script-lbl amber-lbl">📞 Pivot — Say This</div>
+                    <div class="script-txt">What's one thing we could do to move that from okay to great?</div>
+                </div>
+
+                <div class="script-box" style="margin-top:12px;">
+                    <div class="script-lbl">📞 Then Wrap Up</div>
+                    <div class="script-txt" id="txt-lukewarm-close"></div>
+                </div>
+
+                <div class="hr"></div>
+                <div class="sec-lbl">📝 Note Their Feedback</div>
+                <textarea id="f-lw-note" class="textarea-field" placeholder="What did they say could be better? (important for CRM)"></textarea>
+
+                <button class="abtn primary" style="margin-top:12px;" onclick="go('close','lukewarm')">Close Call &amp; Log →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── PROBLEM ── -->
+    <div id="s-problem" class="hidden">
+        <div class="card">
+            <div class="card-head red">
+                <span class="stage-badge">Problem Path</span>
+                <span class="stage-title">Resolve Mode</span>
+            </div>
+            <div class="card-body">
+                <div class="notice red">
+                    <span class="notice-icon">⚠️</span>
+                    <div>No referral ask. Switch fully into support mode — your only goal is fixing this.</div>
+                </div>
+
+                <div class="script-box" style="border-color:#fca5a5; background:#fff5f5;">
+                    <div class="script-lbl" style="color:var(--red);">📞 Say This First</div>
+                    <div class="script-txt">I really appreciate you telling me that. Let me make sure we get that taken care of.</div>
+                </div>
+
+                <div class="script-box" style="margin-top:12px;">
+                    <div class="script-lbl">📞 Then Pick Your Path</div>
+                    <div class="script-txt" style="font-size:15px;">
+                        <p><strong>Quick fix:</strong> "I can actually walk you through that right now — give me one second…"</p>
+                        <p><strong>Needs ticket:</strong> "I'm flagging this for our support team and you'll hear back within [timeframe]. I'll put your name on it personally."</p>
+                        <p><strong>Escalate:</strong> "I want to loop in someone who specializes in exactly this — can I have them call you today?"</p>
+                    </div>
+                </div>
+
+                <div class="hr"></div>
+                <div class="sec-lbl">📝 Log the Issue</div>
+                <div class="input-grp">
+                    <label class="input-lbl" for="f-prob">Issue</label>
+                    <textarea id="f-prob" class="textarea-field" placeholder="What exactly is wrong?"></textarea>
+                </div>
+                <div class="input-grp">
+                    <label class="input-lbl" for="f-action">Action Committed</label>
+                    <textarea id="f-action" class="textarea-field" placeholder="What did you promise? (Be specific — follow-through matters)"></textarea>
+                </div>
+
+                <button class="abtn primary" onclick="go('close','problem')">Issue Handled, Wrap Up →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── REVIEW ASK ── -->
+    <div id="s-review" class="hidden">
+        <div class="card">
+            <div class="card-head">
+                <span class="stage-badge">Stage 3 of 5</span>
+                <span class="stage-title">Google Review Ask</span>
+            </div>
+            <div class="card-body">
+                <div class="script-box">
+                    <div class="script-lbl">📞 Say This</div>
+                    <div class="script-txt">I'm really glad to hear that. Quick favour — would you be open to leaving us a Google review? It literally takes 60 seconds and it helps other business owners find us.</div>
+                </div>
+                <div class="outcome-lbl">Their response?</div>
+                <div class="outcome-btns">
+                    <button class="obtn green" onclick="go('review-yes')">
+                        <span class="obtn-icon">🙌</span>
+                        <span class="obtn-text">Yes! They're In
+                            <span class="obtn-sub">Send the SMS template now</span>
+                        </span>
+                    </button>
+                    <button class="obtn amber" onclick="go('review-no')">
+                        <span class="obtn-icon">🤷</span>
+                        <span class="obtn-text">No / Maybe Later
+                            <span class="obtn-sub">Graceful exit → close</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── REVIEW YES ── -->
+    <div id="s-review-yes" class="hidden">
+        <div class="card">
+            <div class="card-head green">
+                <span class="stage-badge">Stage 3 of 5</span>
+                <span class="stage-title">Send the Review Link</span>
+            </div>
+            <div class="card-body">
+                <div class="script-box green-box">
+                    <div class="script-lbl green-lbl">📞 Say This</div>
+                    <div class="script-txt" id="txt-rev-yes"></div>
+                </div>
+
+                <div class="hr"></div>
+                <div class="sec-lbl">📲 SMS — Copy &amp; Send While on the Call</div>
+
+                <div class="tmpl-box">
+                    <div class="tmpl-lbl">Text Message</div>
+                    <div class="tmpl-txt" id="tmpl-sms"></div>
+                    <button class="copy-btn" id="sms-copy-btn" onclick="copyText('tmpl-sms','sms-copy-btn','📋 Copy SMS')">📋 Copy SMS</button>
+                </div>
+
+                <div class="tmpl-box" style="margin-top:12px;">
+                    <div class="tmpl-lbl">Email Backup (if they prefer email)</div>
+                    <div class="tmpl-txt" id="tmpl-email"></div>
+                    <button class="copy-btn" id="email-copy-btn" onclick="copyText('tmpl-email','email-copy-btn','📋 Copy Email')">📋 Copy Email</button>
+                </div>
+
+                <div class="notice blue">
+                    <span class="notice-icon">💡</span>
+                    <div>Send the <strong>SMS while they're still on the line</strong> — they'll see it arrive and trust it's real. Use email as backup only.</div>
+                </div>
+
+                <button class="abtn primary" onclick="go('referral')">Link Sent ✓  &middot;  Referral Ask</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── REVIEW NO ── -->
+    <div id="s-review-no" class="hidden">
+        <div class="card">
+            <div class="card-head">
+                <span class="stage-badge">Stage 3 of 5</span>
+                <span class="stage-title">Graceful Exit</span>
+            </div>
+            <div class="card-body">
+                <div class="script-box">
+                    <div class="script-lbl">📞 Say This</div>
+                    <div class="script-txt" id="txt-rev-no"></div>
+                </div>
+                <button class="abtn primary" style="margin-top:6px;" onclick="go('close','no-review')">Continue to Close →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── REFERRAL ASK ── -->
+    <div id="s-referral" class="hidden">
+        <div class="card">
+            <div class="card-head">
+                <span class="stage-badge">Stage 4 of 5</span>
+                <span class="stage-title">Referral Ask</span>
+            </div>
+            <div class="card-body">
+                <div class="script-box">
+                    <div class="script-lbl">📞 Say This</div>
+                    <div class="script-txt">One more thing — is there anyone else you know, maybe another business owner, who might benefit from better payment processing?</div>
+                </div>
+                <div class="outcome-lbl">Do they have someone in mind?</div>
+                <div class="outcome-btns">
+                    <button class="obtn green" onclick="showReferralYes()">
+                        <span class="obtn-icon">🎯</span>
+                        <span class="obtn-text">Yes — They Have Someone!
+                            <span class="obtn-sub">Capture name &amp; warm up</span>
+                        </span>
+                    </button>
+                    <button class="obtn amber" onclick="go('close','normal')">
+                        <span class="obtn-icon">👋</span>
+                        <span class="obtn-text">Not Right Now
+                            <span class="obtn-sub">Close warmly</span>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Referral YES inline section -->
+                <div id="referral-yes-section" class="hidden" style="margin-top:16px;">
+                    <div class="hr"></div>
+                    <div class="sec-lbl">🎯 Capture the Referral</div>
+                    <div class="input-grp">
+                        <label class="input-lbl" for="f-refname">Referral's Name / Business</label>
+                        <input id="f-refname" class="input-field" type="text" placeholder="e.g. Mike — pizza place on Main St." autocomplete="off" autocapitalize="words">
+                    </div>
+                    <div class="input-grp">
+                        <label class="input-lbl" for="f-refcontact">Contact Info (if given)</label>
+                        <input id="f-refcontact" class="input-field" type="text" placeholder="Phone or email" autocomplete="off">
+                    </div>
+
+                    <div class="script-box green-box" style="margin-top:4px;">
+                        <div class="script-lbl green-lbl">📞 Warm Response</div>
+                        <div class="script-txt" id="txt-referral"></div>
+                    </div>
+
+                    <div class="script-box" style="margin-top:12px;">
+                        <div class="script-lbl">📞 Next Step — Ask Permission</div>
+                        <div class="script-txt" style="font-size:15px;">
+                            <p>"Would it be okay if I reached out to them and mentioned your name?"</p>
+                            <p>"I'll have someone from our team give them a call — we'll take good care of them."</p>
+                        </div>
+                    </div>
+
+                    <button class="abtn primary" style="margin-top:12px;" onclick="go('close','referral')">Referral Logged, Wrap Up →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── CLOSE ── -->
+    <div id="s-close" class="hidden">
+        <div class="card">
+            <div class="card-head green">
+                <span class="stage-badge">Stage 5 of 5</span>
+                <span class="stage-title">Warm Close</span>
+            </div>
+            <div class="card-body">
+                <div class="script-box green-box">
+                    <div class="script-lbl green-lbl">📞 Say This</div>
+                    <div class="script-txt" id="txt-close"></div>
+                </div>
+
+                <div class="hr"></div>
+                <div class="sec-lbl">✅ Call Log — Check Off Before Moving On</div>
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="chk1">
+                        <label for="chk1">Log call outcome in CRM / HubSpot</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk2">
+                        <label for="chk2">Note any issues flagged + action committed</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk3">
+                        <label for="chk3">Confirm review link sent (if applicable)</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk4">
+                        <label for="chk4">Log referral name + contact info (if applicable)</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk5">
+                        <label for="chk5">Set follow-up task if anything is unresolved</label>
+                    </li>
+                </ul>
+
+                <button class="start-btn" onclick="confirmReset()" style="margin-top:18px;">↺ Start Next Call</button>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /content -->
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ====== SCRIPT ====== -->
+<script>
+// ============================================================
+//  STATE
+// ============================================================
+const STAGE_DEFS = [
+    { id:'opening',  label:'Opening',  screens:['opening','busy'] },
+    { id:'checkin',  label:'Check-In', screens:['checkin','lukewarm','problem'] },
+    { id:'review',   label:'Review',   screens:['review','review-yes','review-no'] },
+    { id:'referral', label:'Referral', screens:['referral'] },
+    { id:'close',    label:'Close',    screens:['close'] },
+];
+
+let S = {
+    screen: 'setup',
+    client: '',
+    rep: '',
+    link: '',
+    path: null,   // 'normal' | 'lukewarm' | 'problem' | 'no-review' | 'busy' | 'referral'
+};
+
+// ============================================================
+//  NAVIGATION
+// ============================================================
+function go(screen, pathFlag) {
+    if (pathFlag) S.path = pathFlag;
+
+    // auto-set path when entering specific screens
+    if (screen === 'lukewarm' && !S.path) S.path = 'lukewarm';
+    if (screen === 'problem'  && !S.path) S.path = 'problem';
+    if (screen === 'review-no') S.path = 'no-review';
+
+    populate(screen);
+    showScreen(screen);
+    renderProgress(screen);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showScreen(name) {
+    document.querySelectorAll('[id^="s-"]').forEach(el => el.classList.add('hidden'));
+    const el = document.getElementById('s-' + name);
+    if (el) el.classList.remove('hidden');
+    S.screen = name;
+}
+
+// ============================================================
+//  POPULATE DYNAMIC TEXT
+// ============================================================
+function em(str) { return `<em>${str}</em>`; }
+
+function populate(screen) {
+    const c = S.client, r = S.rep, lnk = S.link;
+
+    switch(screen) {
+        case 'opening':
+            set('txt-opening',
+                `Hi ${em(c)}, this is ${em(r)} from AllProPay customer support. Just checking in to make sure everything's been going smoothly with your payments. Do you have a couple minutes?`);
+            break;
+
+        case 'busy':
+            set('txt-busy',
+                `No problem at all, ${em(c)}! When would be a better time to catch you? I want to make sure I reach out when it's convenient.`);
+            break;
+
+        case 'lukewarm':
+            set('txt-lukewarm-close',
+                `That feedback is really helpful, ${em(c)} — I'll make sure to pass that along. We're always looking to get better. Well, I won't keep you — thanks for taking a couple minutes. Don't hesitate to reach out if anything comes up. We're always here for you!`);
+            break;
+
+        case 'review-yes':
+            set('txt-rev-yes',
+                `Amazing, thank you so much ${em(c)}! I'm going to shoot you a text right now with the link. It should pop up in a second.`);
+            document.getElementById('tmpl-sms').textContent =
+                `Hey ${c}! Here's that Google review link:\n${lnk}\n\nJust a sentence or two helps a ton. Thanks!`;
+            document.getElementById('tmpl-email').innerHTML =
+                `Subject: Quick favour, ${c}? (60 seconds)\n\nHey ${c},\n\nReally enjoyed catching up! If you have 60 seconds, a Google review would mean a lot to us:\n\n<a href="${lnk}">Leave an AllProPay Google Review</a>\n\nNo pressure — even a sentence goes a long way.\n\nThanks again!\n${S.rep}\nAllProPay Customer Support`;
+            break;
+
+        case 'review-no':
+            set('txt-rev-no',
+                `Totally understand — no pressure at all! If you ever feel like it, we'd love it, but no worries. ${em(c)}, I'm really glad things are running smoothly. We appreciate your business and we're here if you ever need anything!`);
+            break;
+
+        case 'referral':
+            set('txt-referral',
+                `That's awesome, ${em(c)} — thank you so much! We love when great businesses recommend us. We'll make sure they get the same experience you've had.`);
+            break;
+
+        case 'close':
+            let script;
+            switch(S.path) {
+                case 'problem':
+                    script = `${em(c)}, thank you again for bringing that to our attention. That's exactly what we're here for. You'll hear back from us very soon. Have a great rest of your day — and please don't hesitate to call us anytime!`;
+                    break;
+                case 'lukewarm':
+                    script = `Thanks again for your time today, ${em(c)}. Your feedback really matters to us and I'll make sure it gets to the right people. We're always here if you need anything — have a great one!`;
+                    break;
+                case 'referral':
+                    script = `${em(c)}, this has been such a great conversation — thank you for your time, the kind words, and the referral. We really appreciate you! Have an awesome day and reach out any time.`;
+                    break;
+                default:
+                    script = `${em(c)}, it was great talking with you! Really glad to hear everything's going well. Don't hesitate to reach out any time — that's what we're here for. Have an amazing day!`;
+            }
+            set('txt-close', script);
+            // Reset checklist
+            ['chk1','chk2','chk3','chk4','chk5'].forEach(id => {
+                document.getElementById(id).checked = false;
+            });
+            break;
+    }
+}
+
+function set(id, html) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+}
+
+// ============================================================
+//  START CALL
+// ============================================================
+function startCall() {
+    const c = document.getElementById('f-client').value.trim();
+    const r = document.getElementById('f-rep').value.trim();
+    const l = document.getElementById('f-link').value.trim();
+
+    if (!c) { flash('f-client', 'Enter the client\'s name'); return; }
+    if (!r) { flash('f-rep', 'Enter your name'); return; }
+
+    S.client = c;
+    S.rep    = r;
+    S.link   = l || '[YOUR GOOGLE REVIEW LINK]';
+    S.path   = null;
+
+    // Save rep name + link for next time
+    try {
+        localStorage.setItem('app_rep',  r);
+        localStorage.setItem('app_link', l);
+    } catch(e) {}
+
+    // Show header chip
+    document.getElementById('callChip').classList.remove('hidden');
+    document.getElementById('hClientName').textContent = c;
+    document.getElementById('hRepName').textContent = r;
+    document.getElementById('progressWrap').classList.remove('hidden');
+
+    go('opening');
+}
+
+function flash(fieldId, msg) {
+    const el = document.getElementById(fieldId);
+    el.style.borderColor = 'var(--red)';
+    el.focus();
+    showToast(msg);
+    setTimeout(() => el.style.borderColor = '', 2000);
+}
+
+// ============================================================
+//  BUSY PATH END
+// ============================================================
+function endBusy() {
+    S.path = 'busy';
+    showToast('Callback logged — resetting for next call');
+    setTimeout(() => resetAll(), 1400);
+}
+
+// ============================================================
+//  REFERRAL YES (inline reveal)
+// ============================================================
+function showReferralYes() {
+    const sec = document.getElementById('referral-yes-section');
+    sec.classList.remove('hidden');
+    setTimeout(() => sec.scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
+}
+
+// ============================================================
+//  COPY TEMPLATE
+// ============================================================
+function copyText(sourceId, btnId, originalLabel) {
+    const text = document.getElementById(sourceId).textContent;
+    const btn  = document.getElementById(btnId);
+
+    const done = () => {
+        btn.innerHTML = '✅ Copied!';
+        btn.classList.add('copied');
+        showToast('Copied to clipboard!');
+        setTimeout(() => {
+            btn.innerHTML = originalLabel;
+            btn.classList.remove('copied');
+        }, 2200);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    } else {
+        fallbackCopy(text, done);
+    }
+}
+
+function fallbackCopy(text, cb) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:-999px;left:-999px;';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); cb(); } catch(e) { showToast('Copy failed — select & copy manually'); }
+    document.body.removeChild(ta);
+}
+
+// ============================================================
+//  PROGRESS BAR
+// ============================================================
+function renderProgress(currentScreen) {
+    const stepsEl = document.getElementById('progressSteps');
+    stepsEl.innerHTML = '';
+
+    let currentIdx = -1;
+    STAGE_DEFS.forEach((s, i) => {
+        if (s.screens.includes(currentScreen)) currentIdx = i;
+    });
+
+    // Which stages are skipped?
+    const skip = new Set();
+    if (S.path === 'lukewarm' || S.path === 'problem') {
+        skip.add('review'); skip.add('referral');
+    }
+    if (S.path === 'no-review') {
+        skip.add('referral');
+    }
+
+    STAGE_DEFS.forEach((stage, i) => {
+        if (i > 0) {
+            const line = document.createElement('div');
+            line.className = 'p-line' + (i <= currentIdx && !skip.has(stage.id) ? ' done' : '');
+            stepsEl.appendChild(line);
+        }
+
+        const step = document.createElement('div');
+        const isSkip = skip.has(stage.id);
+
+        if (isSkip) {
+            step.className = 'p-step skip';
+            step.innerHTML = `<div class="p-dot">—</div><span>${stage.label}</span>`;
+        } else if (i < currentIdx) {
+            step.className = 'p-step done';
+            step.innerHTML = `<div class="p-dot">✓</div><span>${stage.label}</span>`;
+        } else if (i === currentIdx) {
+            step.className = 'p-step active';
+            step.innerHTML = `<div class="p-dot">${i+1}</div><span>${stage.label}</span>`;
+        } else {
+            step.className = 'p-step';
+            step.innerHTML = `<div class="p-dot">${i+1}</div><span>${stage.label}</span>`;
+        }
+
+        stepsEl.appendChild(step);
+    });
+}
+
+// ============================================================
+//  RESET
+// ============================================================
+function confirmReset() {
+    if (S.screen === 'setup') return;
+    if (!confirm('Reset and start a new call?')) return;
+    resetAll();
+}
+
+function resetAll() {
+    S = { screen:'setup', client:'', rep:'', link:'', path:null };
+
+    document.getElementById('callChip').classList.add('hidden');
+    document.getElementById('progressWrap').classList.add('hidden');
+
+    // Clear per-call fields (keep rep name + link for convenience)
+    document.getElementById('f-client').value = '';
+    document.getElementById('f-cbtime').value  = '';
+    document.getElementById('f-cbnote').value  = '';
+    document.getElementById('f-lw-note').value = '';
+    document.getElementById('f-prob').value    = '';
+    document.getElementById('f-action').value  = '';
+    document.getElementById('f-refname').value    = '';
+    document.getElementById('f-refcontact').value = '';
+    document.getElementById('referral-yes-section').classList.add('hidden');
+
+    showScreen('setup');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+//  TOAST
+// ============================================================
+let toastTimer;
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+// ============================================================
+//  INIT — restore saved values
+// ============================================================
+(function init() {
+    try {
+        const rep  = localStorage.getItem('app_rep');
+        const link = localStorage.getItem('app_link');
+        if (rep)  document.getElementById('f-rep').value  = rep;
+        if (link) document.getElementById('f-link').value = link;
+    } catch(e) {}
+
+    // Keyboard shortcuts for setup form
+    document.getElementById('f-client').addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); document.getElementById('f-rep').focus(); }
+    });
+    document.getElementById('f-rep').addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); document.getElementById('f-link').focus(); }
+    });
+    document.getElementById('f-link').addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); startCall(); }
+    });
+
+    // Save on blur
+    document.getElementById('f-rep').addEventListener('blur', function() {
+        try { localStorage.setItem('app_rep', this.value); } catch(e) {}
+    });
+    document.getElementById('f-link').addEventListener('blur', function() {
+        try { localStorage.setItem('app_link', this.value); } catch(e) {}
+    });
+})();
+</script>
+</body>
+</html>
+
+
