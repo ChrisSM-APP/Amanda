@@ -180,7 +180,7 @@
   .prog-details h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--navy); margin-bottom: 8px; }
   .prog-details ul { list-style: none; padding: 0; }
   .prog-details ul li { padding: 3px 0; padding-left: 16px; position: relative; color: var(--muted); }
-  .prog-details ul li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+  .prog-details ul li::before { content: '&#10003;'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
 
   /* ============ FOOTER NOTE ============ */
   .prop-footer {
@@ -276,7 +276,7 @@
         <div class="field">
           <label>Current Effective Rate (%)</label>
           <input type="number" id="eff-rate" placeholder="2.80" min="0" max="10" step="0.01">
-          <div class="hint">Total fees ÷ total volume × 100</div>
+          <div class="hint">Total fees &divide; total volume &times; 100</div>
         </div>
       </div>
 
@@ -334,7 +334,7 @@
           <h4>IC+ Overview</h4>
           <ul>
             <li>Merchant pays interchange + small markup</li>
-            <li>Full transparency — no bundled rates</li>
+            <li>Full transparency &mdash; no bundled rates</li>
             <li>Best for high-volume, card-present merchants</li>
             <li>Significant savings vs tiered / flat-rate processors</li>
           </ul>
@@ -343,12 +343,12 @@
           <div class="field">
             <label>AllProPay Markup (%)</label>
             <input type="number" id="ic-markup" value="0.60" min="0.1" max="2" step="0.01">
-            <div class="hint">Typical range: 0.50% – 0.80%</div>
+            <div class="hint">Typical range: 0.50% &ndash; 0.80%</div>
           </div>
           <div class="field">
             <label>Per-Transaction Fee ($)</label>
             <input type="number" id="ic-pertxn" value="0.10" min="0" max="0.50" step="0.01">
-            <div class="hint">Typical: $0.08 – $0.15</div>
+            <div class="hint">Typical: $0.08 &ndash; $0.15</div>
           </div>
         </div>
         <div class="field-row">
@@ -362,7 +362,7 @@
           </div>
         </div>
         <div class="field">
-          <label>Avg Interchange Rate (%) — leave blank to auto-estimate</label>
+          <label>Avg Interchange Rate (%) &mdash; leave blank to auto-estimate</label>
           <input type="number" id="ic-interchange" placeholder="1.50" min="0" max="3" step="0.01">
           <div class="hint">Auto-estimate: 1.50% if blank (typical US card mix)</div>
         </div>
@@ -383,7 +383,7 @@
           <div class="field">
             <label>Surcharge Rate (%)</label>
             <input type="number" id="edge-rate" value="3.99" min="3" max="5" step="0.01">
-            <div class="hint">Typical range: 3.50% – 5.00%</div>
+            <div class="hint">Typical range: 3.50% &ndash; 5.00%</div>
           </div>
           <div class="field">
             <label>AllProPay Monthly Fee ($)</label>
@@ -397,25 +397,25 @@
         <div class="prog-details">
           <h4>Edge Plus Overview</h4>
           <ul>
-            <li>Higher surcharge — merchant still pays $0</li>
+            <li>Higher surcharge &mdash; merchant still pays $0</li>
             <li>Spread above network cost = monthly rebate to merchant</li>
             <li>Merchant earns passive income on their own volume</li>
             <li>Best for high-volume businesses who want to monetize</li>
           </ul>
         </div>
         <div class="rebate-hint">
-          💡 <strong>Edge Plus</strong> is Chris's concept: charge a higher surcharge (4.5–5%), use the extra spread to give the merchant a monthly cash rebate. They pay $0 <em>and</em> earn money.
+          💡 <strong>Edge Plus</strong> is Chris's concept: charge a higher surcharge (4.5&ndash;5%), use the extra spread to give the merchant a monthly cash rebate. They pay $0 <em>and</em> earn money.
         </div>
         <div class="field-row">
           <div class="field">
             <label>Surcharge Rate (%)</label>
             <input type="number" id="ep-rate" value="4.75" min="4" max="5" step="0.01">
-            <div class="hint">Typically 4.50% – 5.00%</div>
+            <div class="hint">Typically 4.50% &ndash; 5.00%</div>
           </div>
           <div class="field">
             <label>Network Cost Estimate (%)</label>
             <input type="number" id="ep-network" value="2.00" min="0.5" max="3.5" step="0.01">
-            <div class="hint">Interchange + fees (approx 1.8–2.2%)</div>
+            <div class="hint">Interchange + fees (approx 1.8&ndash;2.2%)</div>
           </div>
         </div>
         <div class="field-row">
@@ -433,7 +433,7 @@
 
       <!-- CLOSER NOTES -->
       <div class="field" style="margin-top:16px">
-        <label>Closer Notes (optional — appears on proposal)</label>
+        <label>Closer Notes (optional &mdash; appears on proposal)</label>
         <textarea id="closer-notes" rows="3" style="resize:vertical" placeholder="Any custom notes for this merchant..."></textarea>
       </div>
     </div>
@@ -463,8 +463,8 @@
 
       <!-- MERCHANT BAR -->
       <div class="prop-merchant-bar">
-        <div><strong id="prop-biz-name">—</strong> <span id="prop-biz-type"></span></div>
-        <div>Processor: <strong id="prop-processor">—</strong></div>
+        <div><strong id="prop-biz-name">&mdash;</strong> <span id="prop-biz-type"></span></div>
+        <div>Processor: <strong id="prop-processor">&mdash;</strong></div>
         <div id="prop-terminal-line"></div>
       </div>
 
@@ -475,19 +475,19 @@
         <div class="savings-hero">
           <div class="savings-box">
             <div class="label">Monthly Savings</div>
-            <div class="amount" id="hero-monthly">—</div>
+            <div class="amount" id="hero-monthly">&mdash;</div>
             <div class="sublabel">per month</div>
           </div>
           <div class="savings-divider"></div>
           <div class="savings-box">
             <div class="label">Annual Savings</div>
-            <div class="amount" id="hero-annual">—</div>
+            <div class="amount" id="hero-annual">&mdash;</div>
             <div class="sublabel">per year</div>
           </div>
           <div class="savings-divider"></div>
           <div class="savings-box">
             <div class="label">3-Year Savings</div>
-            <div class="amount" id="hero-3yr">—</div>
+            <div class="amount" id="hero-3yr">&mdash;</div>
             <div class="sublabel">over 3 years</div>
           </div>
         </div>
@@ -495,7 +495,7 @@
         <!-- EDGE BADGE (shown for Edge/Edge Plus) -->
         <div class="edge-badge" id="edge-badge" style="display:none">
           <div class="badge-title" id="edge-badge-title">🎉 You Pay $0 in Processing Fees</div>
-          <div class="badge-sub" id="edge-badge-sub">Card processing costs are shifted to the cardholder — compliant with network rules when disclosed.</div>
+          <div class="badge-sub" id="edge-badge-sub">Card processing costs are shifted to the cardholder &mdash; compliant with network rules when disclosed.</div>
           <div class="badge-rebate" id="edge-rebate-line" style="display:none"></div>
         </div>
 
@@ -517,9 +517,9 @@
             <tfoot>
               <tr>
                 <td><strong>Total Monthly Cost</strong></td>
-                <td><strong id="tfoot-current">—</strong></td>
-                <td><strong id="tfoot-new">—</strong></td>
-                <td><strong class="text-green" id="tfoot-savings">—</strong></td>
+                <td><strong id="tfoot-current">&mdash;</strong></td>
+                <td><strong id="tfoot-new">&mdash;</strong></td>
+                <td><strong class="text-green" id="tfoot-savings">&mdash;</strong></td>
               </tr>
             </tfoot>
           </table>
@@ -532,7 +532,7 @@
 
         <!-- SETUP FEE -->
         <div id="prop-setup-line" style="display:none;margin-bottom:16px;padding:10px 16px;background:#fff3cd;border-radius:6px;font-size:13px;border:1px solid #ffc107;">
-          <strong>One-Time Setup Fee:</strong> <span id="prop-setup-amt">—</span>
+          <strong>One-Time Setup Fee:</strong> <span id="prop-setup-amt">&mdash;</span>
           <span style="color:var(--muted);margin-left:8px">(includes onboarding, terminal programming, and first month support)</span>
         </div>
 
@@ -543,7 +543,7 @@
 
         <!-- GUARANTEE LINE -->
         <div style="background:var(--light-blue);border-radius:8px;padding:14px 18px;font-size:13px;color:var(--navy);">
-          <strong>✅ AllProPay Guarantee:</strong> Rates locked in writing. 24/7 customer support. No setup fees*, no switch fees, no annual fees. Month-to-month — no long-term contracts.
+          <strong>✅ AllProPay Guarantee:</strong> Rates locked in writing. 24/7 customer support. No setup fees*, no switch fees, no annual fees. Month-to-month &mdash; no long-term contracts.
         </div>
 
       </div><!-- /prop-body -->
@@ -567,7 +567,7 @@
     <!-- ACTION BUTTONS (no-print) -->
     <div class="btn-row" style="justify-content:center;margin-top:16px;">
       <button class="btn btn-secondary" onclick="window.print()">🖨️ Print / Save PDF</button>
-      <button class="btn btn-outline" onclick="document.getElementById('proposal-output').classList.remove('visible')">← Back to Edit</button>
+      <button class="btn btn-outline" onclick="document.getElementById('proposal-output').classList.remove('visible')">&larr; Back to Edit</button>
     </div>
 
   </div><!-- /proposal-output -->
@@ -577,7 +577,7 @@
 <script>
 // ============ UTILS ============
 const $ = id => document.getElementById(id);
-const fmt = (n, dec=0) => n == null || isNaN(n) ? '—' : '$' + Math.max(0, n).toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const fmt = (n, dec=0) => n == null || isNaN(n) ? '&mdash;' : '$' + Math.max(0, n).toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const pct = n => (n * 100).toFixed(2) + '%';
 const val = id => parseFloat($(id).value) || 0;
 const str = id => $(id).value.trim();
@@ -689,7 +689,7 @@ function generateProposal() {
     progDetailsHTML = `
       <h4>Edge Plus Program Details</h4>
       <ul>
-        <li>Surcharge rate: ${pct(epRate)} — merchant pays <strong>$0</strong></li>
+        <li>Surcharge rate: ${pct(epRate)} &mdash; merchant pays <strong>$0</strong></li>
         <li>Monthly merchant rebate: ${pct(epRebatePct)} of volume = <strong>${fmt(merchantRebate, 0)}/mo</strong></li>
         <li>Monthly platform fee: ${fmt(epMfee, 2)}</li>
         <li>Compliant disclosure and signage provided</li>
@@ -764,7 +764,7 @@ function generateProposal() {
     const savings = r.current - r.newCost + (r.isRebate ? r.newCost * -1 : 0);
     const savCls = savings > 0 ? 'text-green' : (savings < 0 ? 'text-red' : '');
     const newDisplay = r.isZero
-      ? '<span class="zero-fee">$0.00 ✓</span>'
+      ? '<span class="zero-fee">$0.00 &#10003;</span>'
       : r.isRebate
         ? `<span class="text-green">+${fmt(merchantRebate,2)}</span>`
         : fmt(r.newCost, 2);
@@ -772,7 +772,7 @@ function generateProposal() {
       <td>${r.label}${r.sub ? `<br><span class="text-muted">${r.sub}</span>` : ''}</td>
       <td>${r.current === 0 && !r.isRebate ? '<span class="text-muted">n/a</span>' : fmt(r.current, 2)}</td>
       <td>${newDisplay}</td>
-      <td class="${savCls}">${savings === 0 ? '—' : fmt(Math.abs(savings), 2)}</td>
+      <td class="${savCls}">${savings === 0 ? '&mdash;' : fmt(Math.abs(savings), 2)}</td>
     </tr>`;
   }
   $('compare-body').innerHTML = tbodyHTML;
@@ -801,7 +801,7 @@ function generateProposal() {
   }
 
   // Internal numbers
-  const effRateNew = adjVol > 0 ? (newProcessingFees / adjVol * 100).toFixed(2) + '%' : '—';
+  const effRateNew = adjVol > 0 ? (newProcessingFees / adjVol * 100).toFixed(2) + '%' : '&mdash;';
   $('internal-row').innerHTML = `
     <div class="internal-item"><div class="ikey">Adjusted Volume</div><div class="ival">${fmt(adjVol,0)}</div></div>
     <div class="internal-item"><div class="ikey">Current Eff. Rate</div><div class="ival">${(effRate*100).toFixed(2)}%</div></div>
