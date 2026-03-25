@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TotalOne â€” LTL Freight Class &amp; NMFC Calculator</title>
+<title>TotalOne â€&rdquo; LTL Freight Class &amp; NMFC Calculator</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fdf0f5;color:#212529;font-size:14px;line-height:1.5}
@@ -273,9 +273,9 @@ footer{text-align:center;padding:18px;font-size:11px;color:#6c757d;border-top:1p
 <footer>TotalOne &mdash; LTL Freight Calculator &mdash; Reference use only &mdash; Verify with carriers and the official NMFTA tariff</footer>
 
 <script>
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // DATA
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 const CLASS_DATA = [
   {cls:50,   minD:50,  rate:"Lowest",       color:"#1b6b35",bg:"#d4f0df",examples:"Steel, bricks, sand, hardwood flooring"},
@@ -376,9 +376,9 @@ const ACCESSORIALS = [
   "White Glove / Room of Choice","Construction Site Delivery",
 ];
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // INIT
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 let pieceCount = 0;
 
@@ -389,9 +389,9 @@ function init() {
   addPiece();
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // TABS
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function showTab(tab, btn) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -400,9 +400,9 @@ function showTab(tab, btn) {
   btn.classList.add('active');
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // PIECES TABLE
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function addPiece() {
   pieceCount++;
@@ -445,9 +445,9 @@ function clearAll() {
   addPiece();
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // CALCULATE
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function calculate() {
   const rows = document.querySelectorAll('#pieces-tbody tr');
@@ -508,9 +508,9 @@ function getClassInfo(density) {
   return CLASS_DATA[CLASS_DATA.length - 1];
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // ACCESSORIALS
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function buildAccessorials() {
   var grid = document.getElementById('acc-grid');
@@ -530,9 +530,9 @@ function getCheckedAcc() {
   });
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // PRINT SUMMARY
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function getSummaryData() {
   var rows = document.querySelectorAll('#pieces-tbody tr');
@@ -613,9 +613,9 @@ function printSummary() {
   setTimeout(function(){ w.print(); }, 500);
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // COPY TO CLIPBOARD
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function copySummary(btn) {
   var d = getSummaryData();
@@ -667,9 +667,9 @@ function flashBtn(btn) {
   setTimeout(function() { btn.innerHTML = orig; btn.setAttribute('style', origStyle); }, 2200);
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // REFERENCE TABLE
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function buildRefTable() {
   var tbody = document.getElementById('ref-tbody');
@@ -692,9 +692,9 @@ function toggleRef(btn) {
   btn.textContent = wrap.classList.contains('open') ? 'Hide' : 'Show';
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // NMFC LOOKUP
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function buildNmfcTable() { renderNmfc(NMFC_DATA); }
 
@@ -723,9 +723,9 @@ function filterNmfc() {
   }) : NMFC_DATA);
 }
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 // NMFC AUTO-LOOKUP
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 
 function autoLookupNmfc(q) {
  var box = document.getElementById('nmfc-suggestions');
@@ -765,7 +765,7 @@ document.addEventListener('click', function(e) {
  }
 });
 
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€â&rdquo;€
 init();
 </script>
 </body>
