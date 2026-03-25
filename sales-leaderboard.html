@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AllProPay &mdash; Sales Leaderboard</title>
+<style>
+  :root {
+    --navy: #1e3a5f;
+    --blue: #2c5282;
+    --accent: #4299e1;
+    --accent2: #63b3ed;
+    --gold: #f6ad55;
+    --silver: #a0aec0;
+    --bronze: #c05621;
+    --green: #48bb78;
+    --red: #fc8181;
+    --bg: #0d1b2e;
+    --surface: #142338;
+    --surface2: #1a2f4a;
+    --border: #2a4a6e;
+    --text: #e2e8f0;
+    --text-muted: #718096;
+    --cs-yellow: #f6c90e;
+    --cs-bg: #0d1117;
+    --cs-surface: #161b22;
+    --cs-border: #30363d;
+    --cs-orange: #f78166;
+    --cs-green: #3fb950;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── Animated Background ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(66,153,225,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(44,82,130,0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── Header ─── */
+  header {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 0;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 0 20px rgba(66,153,225,0.4);
+    flex-shrink: 0;
+  }
+
+  .logo-text h1 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+  }
+
+  .logo-text p {
+    font-size: 13px;
+    color: var(--accent2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .live-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(72,187,120,0.15);
+    border: 1px solid rgba(72,187,120,0.4);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 1px;
+  }
+
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .header-date {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ─── Stats Bar ─── */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+  }
+
+  .stats-bar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  .stat-delta {
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* ─── Main Content ─── */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 32px;
+  }
+
+  /* ─── Section Header ─── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title span {
+    font-size: 22px;
+  }
+
+  .month-badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--accent2);
+    font-weight: 600;
+  }
+
+  /* ─── Leaderboard ─── */
+  .leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .player-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .player-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 14px 0 0 14px;
+    background: var(--border);
+    transition: all 0.25s ease;
+  }
+
+  .player-row:hover {
+    background: var(--surface2);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(66,153,225,0.2);
+  }
+
+  .player-row:hover::before {
+    background: var(--accent);
+  }
+
+  .player-row.rank-1 { border-color: rgba(246,173,85,0.4); }
+  .player-row.rank-1::before { background: var(--gold); }
+  .player-row.rank-1:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(246,173,85,0.3); }
+
+  .player-row.rank-2 { border-color: rgba(160,174,192,0.3); }
+  .player-row.rank-2::before { background: var(--silver); }
+
+  .player-row.rank-3 { border-color: rgba(192,86,33,0.3); }
+  .player-row.rank-3::before { background: var(--bronze); }
+
+  /* Rank Number */
+  .rank-num {
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1;
+  }
+  .rank-1 .rank-num { color: var(--gold); text-shadow: 0 0 12px rgba(246,173,85,0.5); }
+  .rank-2 .rank-num { color: var(--silver); }
+  .rank-3 .rank-num { color: var(--bronze); }
+  .rank-4 .rank-num, .rank-5 .rank-num { color: var(--text-muted); font-size: 18px; }
+
+  /* Player Info */
+  .player-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+    flex-shrink: 0;
+    letter-spacing: -1px;
+  }
+
+  .rank-1 .avatar { background: linear-gradient(135deg, #d69e2e, #f6ad55); color: #1a0a00; }
+  .rank-2 .avatar { background: linear-gradient(135deg, #718096, #a0aec0); color: #1a1a2e; }
+  .rank-3 .avatar { background: linear-gradient(135deg, #9c4221, #c05621); color: #fff; }
+  .rank-4 .avatar { background: linear-gradient(135deg, var(--navy), var(--blue)); color: var(--accent2); }
+  .rank-5 .avatar { background: linear-gradient(135deg, #2d3748, #4a5568); color: var(--text-muted); }
+
+  .player-details { min-width: 0; }
+
+  .player-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .player-role {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .player-streak {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 4px;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  .streak-hot {
+    background: rgba(252,129,74,0.15);
+    color: #fc814a;
+    border: 1px solid rgba(252,129,74,0.3);
+  }
+
+  .streak-cold {
+    background: rgba(113,128,150,0.1);
+    color: var(--text-muted);
+    border: 1px solid rgba(113,128,150,0.2);
+  }
+
+  /* Stats Grid */
+  .player-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 90px);
+    gap: 16px;
+    text-align: right;
+  }
+
+  .pstat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .pstat-val {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .pstat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    font-weight: 600;
+  }
+
+  .pstat-val.good { color: var(--green); }
+  .pstat-val.accent { color: var(--accent2); }
+  .pstat-val.gold { color: var(--gold); }
+
+  /* ─── Progress Bar ─── */
+  .goal-section {
+    margin-bottom: 40px;
+  }
+
+  .goal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+
+  .goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 16px;
+  }
+
+  .goal-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .goal-numbers {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .goal-numbers strong {
+    color: var(--accent2);
+    font-size: 18px;
+  }
+
+  .progress-track {
+    height: 12px;
+    background: var(--surface2);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--blue) 0%, var(--accent) 100%);
+    position: relative;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 12px rgba(66,153,225,0.5);
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+
+  .goal-milestone {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    z-index: 2;
+  }
+
+  .goal-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .goal-labels strong { color: var(--gold); }
+
+  /* ─── CS2 Modal ─── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .cs2-card {
+    width: 480px;
+    max-width: 95vw;
+    background: var(--cs-bg);
+    border: 1px solid var(--cs-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(246,201,14,0.1);
+  }
+
+  .modal-overlay.active .cs2-card {
+    transform: scale(1) translateY(0);
+  }
+
+  /* CS2 Card Header */
+  .cs2-header {
+    padding: 20px 24px 16px;
+    background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--cs-border);
+    position: relative;
+  }
+
+  .cs2-game-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 11px;
+    color: var(--cs-yellow);
+    background: rgba(246,201,14,0.1);
+    border: 1px solid rgba(246,201,14,0.3);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: monospace;
+  }
+
+  .cs2-player-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cs2-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 800;
+    border: 2px solid rgba(246,201,14,0.3);
+  }
+
+  .cs2-name-block h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    font-family: monospace;
+    letter-spacing: 1px;
+  }
+
+  .cs2-rank-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+  }
+
+  .cs2-role-tag {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    font-family: monospace;
+  }
+
+  /* CS2 Stats Grid */
+  .cs2-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .cs2-stat {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--cs-border);
+    border-right: 1px solid var(--cs-border);
+    position: relative;
+  }
+
+  .cs2-stat:nth-child(3n) {
+    border-right: none;
+  }
+
+  .cs2-stat:nth-last-child(-n+3) {
+    border-bottom: none;
+  }
+
+  .cs2-stat-val {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--cs-yellow);
+    font-family: 'Courier New', monospace;
+    line-height: 1;
+  }
+
+  .cs2-stat-val.green { color: var(--cs-green); }
+  .cs2-stat-val.red { color: var(--cs-orange); }
+  .cs2-stat-val.white { color: #fff; }
+
+  .cs2-stat-label {
+    font-size: 11px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    font-family: monospace;
+    font-weight: 700;
+  }
+
+  .cs2-stat-sublabel {
+    font-size: 10px;
+    color: #484f58;
+    margin-top: 2px;
+    font-family: monospace;
+    font-style: italic;
+  }
+
+  /* CS2 Footer */
+  .cs2-footer {
+    padding: 16px 24px;
+    background: var(--cs-surface);
+    border-top: 1px solid var(--cs-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cs2-rating-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cs2-rating-label {
+    font-size: 11px;
+    color: #8b949e;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .cs2-rating-val {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--cs-yellow);
+    font-family: 'Courier New', monospace;
+  }
+
+  .cs2-close-btn {
+    background: rgba(246,201,14,0.1);
+    border: 1px solid rgba(246,201,14,0.3);
+    color: var(--cs-yellow);
+    font-size: 13px;
+    font-weight: 700;
+    font-family: monospace;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+
+  .cs2-close-btn:hover {
+    background: rgba(246,201,14,0.2);
+    transform: scale(1.05);
+  }
+
+  .cs2-easter-egg {
+    font-size: 11px;
+    color: #484f58;
+    font-family: monospace;
+    text-align: center;
+    padding: 8px;
+    background: var(--cs-bg);
+    border-top: 1px solid var(--cs-border);
+  }
+
+  /* ─── Footer ─── */
+  .page-footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding: 16px 32px;
+    text-align: center;
+  }
+
+  .page-footer p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .page-footer strong {
+    color: var(--accent2);
+  }
+
+  /* ─── Animations ─── */
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .player-row {
+    animation: slideIn 0.4s ease both;
+  }
+
+  .player-row:nth-child(1) { animation-delay: 0.05s; }
+  .player-row:nth-child(2) { animation-delay: 0.1s; }
+  .player-row:nth-child(3) { animation-delay: 0.15s; }
+  .player-row:nth-child(4) { animation-delay: 0.2s; }
+  .player-row:nth-child(5) { animation-delay: 0.25s; }
+
+  /* ─── Crown ─── */
+  .crown-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .crown {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    animation: float 2s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-3px); }
+  }
+
+  /* ─── Hint ─── */
+  .hint-text {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: -4px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .hint-text span {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+    .player-stats { grid-template-columns: repeat(2, 80px); }
+    main { padding: 20px 16px; }
+    .stats-bar { padding: 16px; }
+    .header-inner { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── Header ─── -->
+<header>
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text">
+        <h1>AllProPay</h1>
+        <p>Sales Command Center</p>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        LIVE
+      </div>
+      <div class="header-date" id="live-date"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── Stats Bar ─── -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-card">
+      <div class="stat-value" id="counter-deals">0</div>
+      <div class="stat-label">Deals This Month</div>
+      <div class="stat-delta">&uarr; 14% vs last month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="counter-revenue">$0</div>
+      <div class="stat-label">Revenue Generated</div>
+      <div class="stat-delta">&uarr; 22% vs last month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="counter-transfers">0</div>
+      <div class="stat-label">Total Transfers</div>
+      <div class="stat-delta">&uarr; 8% vs last month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="counter-rate">0%</div>
+      <div class="stat-label">Team Close Rate</div>
+      <div class="stat-delta">&uarr; 3.1pp vs last month</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Main ─── -->
+<main>
+
+  <!-- Monthly Goal -->
+  <div class="goal-section">
+    <div class="goal-card">
+      <div class="goal-header">
+        <div class="goal-title">🎯 March Monthly Goal &mdash; 85 Deals</div>
+        <div class="goal-numbers"><strong>67</strong> / 85 deals closed</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width: 0%">
+        </div>
+        <div class="goal-milestone" style="left: 50%;" title="Halfway milestone"></div>
+        <div class="goal-milestone" style="left: 75%;" title="Bonus threshold"></div>
+      </div>
+      <div class="goal-labels">
+        <span>0</span>
+        <span><strong>🏆 Bonus @ 64</strong></span>
+        <span>85</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="section-header">
+    <div class="section-title">
+      <span>🏆</span> March Leaderboard
+    </div>
+    <div class="month-badge">March 2026</div>
+  </div>
+
+  <div class="hint-text">Click a rep to view their <span>player card</span> 👾</div>
+
+  <div class="leaderboard">
+
+    <!-- Rank 1 - Tammy -->
+    <div class="player-row rank-1" onclick="openCard('tammy')">
+      <div class="rank-num">
+        <div class="crown-wrap">
+          <div class="crown">👑</div>
+          1
+        </div>
+      </div>
+      <div class="player-info">
+        <div class="avatar">TW</div>
+        <div class="player-details">
+          <div class="player-name">Tammy W.</div>
+          <div class="player-role">Senior Closer · 🔥 On fire</div>
+          <div class="player-streak streak-hot">🔥 8-deal streak</div>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat">
+          <div class="pstat-val gold">22</div>
+          <div class="pstat-label">Deals</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val good">34%</div>
+          <div class="pstat-label">Close Rate</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val accent">48</div>
+          <div class="pstat-label">Transfers</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val good">$61.4K</div>
+          <div class="pstat-label">Revenue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rank 2 - Matt -->
+    <div class="player-row rank-2" onclick="openCard('matt')">
+      <div class="rank-num">2</div>
+      <div class="player-info">
+        <div class="avatar">MR</div>
+        <div class="player-details">
+          <div class="player-name">Matt R.</div>
+          <div class="player-role">Closer</div>
+          <div class="player-streak streak-hot">🔥 5-deal streak</div>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat">
+          <div class="pstat-val">18</div>
+          <div class="pstat-label">Deals</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val good">29%</div>
+          <div class="pstat-label">Close Rate</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val accent">62</div>
+          <div class="pstat-label">Transfers</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val">$49.2K</div>
+          <div class="pstat-label">Revenue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rank 3 - Kurt -->
+    <div class="player-row rank-3" onclick="openCard('kurt')">
+      <div class="rank-num">3</div>
+      <div class="player-info">
+        <div class="avatar">KL</div>
+        <div class="player-details">
+          <div class="player-name">Kurt L.</div>
+          <div class="player-role">Closer</div>
+          <div class="player-streak streak-cold">&mdash; 2-deal gap</div>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat">
+          <div class="pstat-val">14</div>
+          <div class="pstat-label">Deals</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val">24%</div>
+          <div class="pstat-label">Close Rate</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val accent">71</div>
+          <div class="pstat-label">Transfers</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val">$38.9K</div>
+          <div class="pstat-label">Revenue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rank 4 - John -->
+    <div class="player-row rank-4" onclick="openCard('john')">
+      <div class="rank-num">4</div>
+      <div class="player-info">
+        <div class="avatar">JB</div>
+        <div class="player-details">
+          <div class="player-name">John B.</div>
+          <div class="player-role">Opener / Closer</div>
+          <div class="player-streak streak-cold">&mdash; 3-deal gap</div>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat">
+          <div class="pstat-val">9</div>
+          <div class="pstat-label">Deals</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val">18%</div>
+          <div class="pstat-label">Close Rate</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val accent">84</div>
+          <div class="pstat-label">Transfers</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val">$24.1K</div>
+          <div class="pstat-label">Revenue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rank 5 - Katie -->
+    <div class="player-row rank-5" onclick="openCard('katie')">
+      <div class="rank-num">5</div>
+      <div class="player-info">
+        <div class="avatar">KC</div>
+        <div class="player-details">
+          <div class="player-name">Katie C.</div>
+          <div class="player-role">Customer Success · Support</div>
+          <div class="player-streak streak-cold">&mdash; CS role, limited sales floor</div>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat">
+          <div class="pstat-val">4</div>
+          <div class="pstat-label">Deals</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val good">41%</div>
+          <div class="pstat-label">Retention</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val accent">27</div>
+          <div class="pstat-label">Referrals</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val good">$0</div>
+          <div class="pstat-label">Chargebacks</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ─── Footer ─── -->
+<div class="page-footer">
+  <p>Built by <strong>Maximus</strong> · AllProPay Sales Intelligence · Data refreshes daily · <span style="color:#4a5568">Powered by AllProPay HQ</span></p>
+</div>
+
+<!-- ─── CS2 Modal ─── -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="cs2-card" id="cs2-card">
+    <div class="cs2-header">
+      <div class="cs2-game-badge">CS2 STATS</div>
+      <div class="cs2-player-header">
+        <div class="cs2-avatar" id="cs2-avatar"></div>
+        <div class="cs2-name-block">
+          <h2 id="cs2-name"></h2>
+          <div class="cs2-rank-badge" id="cs2-rank-badge"></div>
+          <div class="cs2-role-tag" id="cs2-role-tag"></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs2-stats-grid" id="cs2-stats-grid">
+      <!-- populated by JS -->
+    </div>
+    <div class="cs2-footer">
+      <div class="cs2-rating-block">
+        <div class="cs2-rating-label">PREMIER RATING</div>
+        <div class="cs2-rating-val" id="cs2-rating"></div>
+      </div>
+      <button class="cs2-close-btn" onclick="closeCard()">[ CLOSE ]</button>
+    </div>
+    <div class="cs2-easter-egg" id="cs2-egg"></div>
+  </div>
+</div>
+
+<script>
+// ─── Live Date ───
+function updateDate() {
+  const now = new Date();
+  const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+                  hour: '2-digit', minute: '2-digit' };
+  document.getElementById('live-date').textContent = now.toLocaleDateString('en-US', opts);
+}
+updateDate();
+setInterval(updateDate, 60000);
+
+// ─── Counter Animations ───
+function animateCounter(id, target, prefix, suffix, duration) {
+  const el = document.getElementById(id);
+  const start = performance.now();
+  function update(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val = Math.round(ease * target);
+    el.textContent = prefix + (id === 'counter-revenue' ? val.toLocaleString() : val) + suffix;
+    if (p < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    animateCounter('counter-deals', 67, '', '', 1200);
+    animateCounter('counter-revenue', 173600, '$', '', 1400);
+    animateCounter('counter-transfers', 292, '', '', 1000);
+    animateCounter('counter-rate', 27, '', '%', 1100);
+
+    // Progress bar
+    const fill = document.getElementById('progress-fill');
+    setTimeout(() => {
+      fill.style.width = '78.8%'; // 67/85
+    }, 300);
+  }, 200);
+});
+
+// ─── CS2 Player Data ───
+const players = {
+  tammy: {
+    name: 'TW-SLAYER',
+    initials: 'TW',
+    avatarStyle: 'background: linear-gradient(135deg, #d69e2e, #f6ad55); color: #1a0a00;',
+    role: '// Closer · Level 3 Operator',
+    rankBadge: '🥇 Global Elite',
+    rankStyle: 'background: rgba(246,201,14,0.15); color: #f6c90e; border: 1px solid rgba(246,201,14,0.4);',
+    rating: '14,220',
+    egg: '// fun fact: Tammy has never rage-quit a deal. not once.',
+    stats: [
+      { val: '34%', cls: 'green', label: 'K/D RATIO', sub: '(Close Rate)' },
+      { val: '22', cls: 'white', label: 'TOTAL KILLS', sub: '(Deals Closed)' },
+      { val: '48', cls: 'white', label: 'ASSISTS', sub: '(Transfers Out)' },
+      { val: '91%', cls: 'green', label: 'HS %', sub: '(Demo Show Rate)' },
+      { val: '$2.8K', cls: 'yellow', label: 'AVG DEAL', sub: '(Avg Revenue)' },
+      { val: '0', cls: 'green', label: 'DEATHS', sub: '(Lost Deals)' },
+    ]
+  },
+  matt: {
+    name: 'MATTINATOR',
+    initials: 'MR',
+    avatarStyle: 'background: linear-gradient(135deg, #718096, #a0aec0); color: #1a1a2e;',
+    role: '// Closer · Level 2 Operator',
+    rankBadge: '🥈 Supreme Master',
+    rankStyle: 'background: rgba(160,174,192,0.15); color: #a0aec0; border: 1px solid rgba(160,174,192,0.4);',
+    rating: '11,840',
+    egg: '// matt once cold-closed a guy who called in to cancel. legend.',
+    stats: [
+      { val: '29%', cls: 'green', label: 'K/D RATIO', sub: '(Close Rate)' },
+      { val: '18', cls: 'white', label: 'TOTAL KILLS', sub: '(Deals Closed)' },
+      { val: '62', cls: 'green', label: 'ASSISTS', sub: '(Transfers Out)' },
+      { val: '78%', cls: 'white', label: 'HS %', sub: '(Demo Show Rate)' },
+      { val: '$2.7K', cls: 'yellow', label: 'AVG DEAL', sub: '(Avg Revenue)' },
+      { val: '3', cls: 'red', label: 'DEATHS', sub: '(Lost Deals)' },
+    ]
+  },
+  kurt: {
+    name: 'KURT_47',
+    initials: 'KL',
+    avatarStyle: 'background: linear-gradient(135deg, #9c4221, #c05621); color: #fff;',
+    role: '// Closer · Level 2 Operator',
+    rankBadge: '🥉 Legendary Eagle',
+    rankStyle: 'background: rgba(192,86,33,0.15); color: #c05621; border: 1px solid rgba(192,86,33,0.4);',
+    rating: '9,610',
+    egg: '// most transfers on the board. quietly feeding the whole team.',
+    stats: [
+      { val: '24%', cls: 'white', label: 'K/D RATIO', sub: '(Close Rate)' },
+      { val: '14', cls: 'white', label: 'TOTAL KILLS', sub: '(Deals Closed)' },
+      { val: '71', cls: 'green', label: 'ASSISTS', sub: '(Transfers Out)' },
+      { val: '72%', cls: 'white', label: 'HS %', sub: '(Demo Show Rate)' },
+      { val: '$2.8K', cls: 'yellow', label: 'AVG DEAL', sub: '(Avg Revenue)' },
+      { val: '5', cls: 'red', label: 'DEATHS', sub: '(Lost Deals)' },
+    ]
+  },
+  john: {
+    name: 'JB_GRINDER',
+    initials: 'JB',
+    avatarStyle: 'background: linear-gradient(135deg, var(--navy), var(--blue)); color: var(--accent2);',
+    role: '// Opener-Closer · Level 1 Operator',
+    rankBadge: '⭐ Distinguished Master',
+    rankStyle: 'background: rgba(66,153,225,0.15); color: #4299e1; border: 1px solid rgba(66,153,225,0.4);',
+    rating: '7,290',
+    egg: '// highest transfer volume. dude is a machine on the phones.',
+    stats: [
+      { val: '18%', cls: 'red', label: 'K/D RATIO', sub: '(Close Rate)' },
+      { val: '9', cls: 'white', label: 'TOTAL KILLS', sub: '(Deals Closed)' },
+      { val: '84', cls: 'green', label: 'ASSISTS', sub: '(Transfers Out)' },
+      { val: '65%', cls: 'white', label: 'HS %', sub: '(Demo Show Rate)' },
+      { val: '$2.7K', cls: 'yellow', label: 'AVG DEAL', sub: '(Avg Revenue)' },
+      { val: '7', cls: 'red', label: 'DEATHS', sub: '(Lost Deals)' },
+    ]
+  },
+  katie: {
+    name: 'KATIE_SHIELD',
+    initials: 'KC',
+    avatarStyle: 'background: linear-gradient(135deg, #2d3748, #4a5568); color: #a0aec0;',
+    role: '// Support · CS Specialist',
+    rankBadge: '🛡️ Support Main',
+    rankStyle: 'background: rgba(113,128,150,0.15); color: #a0aec0; border: 1px solid rgba(113,128,150,0.4);',
+    rating: '8,100',
+    egg: '// $0 chargebacks. zero. absolute lockdown. protect this player.',
+    stats: [
+      { val: '41%', cls: 'green', label: 'RETENTION %', sub: '(Merchant Keep Rate)' },
+      { val: '27', cls: 'green', label: 'SAVES', sub: '(Referrals Sent)' },
+      { val: '$0', cls: 'green', label: 'GRIEF SCORE', sub: '(Chargebacks)' },
+      { val: '4.9', cls: 'green', label: 'CSAT RATING', sub: '(Out of 5.0)' },
+      { val: '4', cls: 'white', label: 'KILLS', sub: '(Sales Converted)' },
+      { val: '98%', cls: 'green', label: 'ACCURACY', sub: '(Ticket Resolve Rate)' },
+    ]
+  }
+};
+
+// ─── Modal Logic ───
+function openCard(id) {
+  const p = players[id];
+  if (!p) return;
+
+  document.getElementById('cs2-name').textContent = p.name;
+  document.getElementById('cs2-rating').textContent = p.rating;
+  document.getElementById('cs2-egg').textContent = p.egg;
+
+  const avatar = document.getElementById('cs2-avatar');
+  avatar.textContent = p.initials;
+  avatar.style.cssText = p.avatarStyle;
+
+  const badge = document.getElementById('cs2-rank-badge');
+  badge.textContent = p.rankBadge;
+  badge.style.cssText = p.rankStyle;
+
+  document.getElementById('cs2-role-tag').textContent = p.role;
+
+  const grid = document.getElementById('cs2-stats-grid');
+  grid.innerHTML = p.stats.map(s => `
+    <div class="cs2-stat">
+      <div class="cs2-stat-val ${s.cls}">${s.val}</div>
+      <div class="cs2-stat-label">${s.label}</div>
+      <div class="cs2-stat-sublabel">${s.sub}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCard() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal')) closeCard();
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeCard();
+});
+</script>
+</body>
+</html>
