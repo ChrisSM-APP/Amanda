@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AllProPay Mission Control ⚔️</title>
+  <title>AllProPay Mission Control</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -757,7 +757,7 @@
 <header>
   <div class="header-inner">
     <div class="brand">
-      <div class="brand-icon">⚔️</div>
+      <div class="brand-icon">&#x2694;&#xFE0F;</div>
       <div class="brand-text">
         <h1>AllProPay Mission Control</h1>
         <p>Powered by Max · Command &amp; Execute</p>
@@ -856,7 +856,7 @@
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <h2>⚔️ Add New Task</h2>
+    <h2>&#x2694;&#xFE0F; Add New Task</h2>
     <div class="form-group">
       <label>Task Name</label>
       <input type="text" id="new-task-name" placeholder="Describe the task..." />
@@ -866,7 +866,7 @@
       <select id="new-task-cat">
         <option value="active">🔵 Active (working now)</option>
         <option value="queue" selected>🟡 Queue (up next)</option>
-        <option value="done">✅ Completed</option>
+        <option value="done">&#x2705; Completed</option>
       </select>
     </div>
     <div class="form-group">
@@ -1083,7 +1083,7 @@
     const el = document.getElementById('list-queue');
     document.getElementById('count-queue').textContent = state.queue.length;
     if (!state.queue.length) {
-      el.innerHTML = '<div class="empty-state">Queue is empty — good work! ⚔️</div>';
+      el.innerHTML = '<div class="empty-state">Queue is empty — good work! &#x2694;&#xFE0F;</div>';
       return;
     }
     el.innerHTML = state.queue.map((t, i) => `
@@ -1146,7 +1146,7 @@
     const sorted = [...state.done].reverse();
     el.innerHTML = sorted.map(t => `
       <div class="task-card" data-id="${t.id}" data-list="done">
-        <span class="done-check">✅</span>
+        <span class="done-check">&#x2705;</span>
         <div class="task-info">
           <div class="task-name" style="color:var(--text-muted);text-decoration:line-through">${esc(t.name)}</div>
           <div class="done-time">Completed at ${fmtTime(t.ts || Date.now())}</div>
@@ -1210,7 +1210,7 @@
     state.done.push(task);
     save(state);
     renderAll();
-    showToast('✅ Task completed!');
+    showToast('&#x2705; Task completed!');
   };
 
   window.moveTask = function (from, to, id) {
@@ -1243,7 +1243,7 @@
     save(state);
     renderAction();
     renderStats();
-    if (checked) showToast('✅ Action item checked off!');
+    if (checked) showToast('&#x2705; Action item checked off!');
   };
 
   /* ── MODAL ────────────────────────────────────────────── */
@@ -1286,7 +1286,7 @@
     renderAll();
     overlay.classList.remove('open');
     clearModal();
-    showToast('⚔️ Task added!');
+    showToast('&#x2694;&#xFE0F; Task added!');
   }
 
   function clearModal() {
@@ -1317,3 +1317,4 @@
 </script>
 </body>
 </html>
+
