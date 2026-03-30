@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TotalOne â€“ Currency Converter</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fdf0f5;color:#212529;font-size:14px;line-height:1.5;min-height:100vh}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,#8b1a4a 0%,#c2185b 100%);color:white;padding:18px 24px}
+.header-inner{max-width:600px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.sloth-emoji{font-size:48px;line-height:1}
+.header-text h1{font-size:20px;font-weight:800;letter-spacing:-0.3px}
+.header-text p{font-size:12px;color:#f8bbd0;margin-top:3px}
+.back-btn{margin-left:auto;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);padding:7px 14px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:5px;transition:background .2s}
+.back-btn:hover{background:rgba(255,255,255,0.25)}
+
+/* MAIN */
+.container{max-width:560px;margin:32px auto;padding:0 20px}
+
+/* RATE BAR */
+.rate-bar{background:white;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rate-dot{width:8px;height:8px;border-radius:50%;background:#27ae60;flex-shrink:0}
+.rate-dot.loading{background:#f39c12;animation:pulse 1s infinite}
+.rate-dot.error{background:#e74c3c}
+.rate-info{flex:1;min-width:150px}
+.rate-label{font-size:11px;font-weight:700;color:#8b1a4a;text-transform:uppercase;letter-spacing:.5px}
+.rate-value{font-size:18px;font-weight:800;color:#212529;margin-top:1px}
+.rate-updated{font-size:11px;color:#6c757d;margin-top:1px}
+.override-toggle{font-size:11px;color:#c2185b;cursor:pointer;font-weight:600;text-decoration:underline;margin-left:auto}
+
+/* OVERRIDE PANEL */
+.override-panel{background:#fff8fa;border:1px dashed #f8bbd0;border-radius:8px;padding:12px 16px;margin-bottom:20px;display:none}
+.override-panel.show{display:block}
+.override-row{display:flex;align-items:center;gap:10px}
+.override-row label{font-size:12px;font-weight:700;color:#495057;white-space:nowrap}
+.override-row input{flex:1;padding:7px 10px;border:1px solid #ced4da;border-radius:6px;font-size:13px}
+.override-row input:focus{outline:none;border-color:#c2185b;box-shadow:0 0 0 2px rgba(194,24,91,.12)}
+.btn-use-override{background:#8b1a4a;color:white;border:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer}
+.btn-use-override:hover{background:#c2185b}
+
+/* CONVERTER CARD */
+.card{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.09);padding:24px}
+
+/* DIRECTION TOGGLE */
+.direction-row{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:24px;border:2px solid #e0a0b8;border-radius:50px;overflow:hidden}
+.dir-btn{flex:1;padding:9px 0;text-align:center;font-size:13px;font-weight:700;cursor:pointer;background:white;color:#8b1a4a;border:none;transition:all .2s}
+.dir-btn.active{background:#c2185b;color:white}
+.dir-btn:first-child{border-right:1px solid #e0a0b8}
+.dir-swap-icon{font-size:18px;margin:0 4px}
+
+/* INPUTS */
+.input-group{margin-bottom:18px}
+.input-label{font-size:11px;font-weight:700;color:#495057;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block}
+.input-wrap{position:relative}
+.input-wrap input{width:100%;padding:12px 48px 12px 14px;border:1.5px solid #e0a0b8;border-radius:8px;font-size:22px;font-weight:700;color:#212529;background:#fdf8fb}
+.input-wrap input:focus{outline:none;border-color:#c2185b;box-shadow:0 0 0 3px rgba(194,24,91,.1);background:white}
+.currency-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:800;color:#8b1a4a;background:#f8bbd0;padding:3px 8px;border-radius:4px}
+
+/* BUFFER */
+.buffer-row{display:flex;align-items:center;gap:12px;margin-bottom:24px;background:#fdf0f5;padding:10px 14px;border-radius:8px}
+.buffer-row label{font-size:12px;font-weight:700;color:#495057;flex:1}
+.buffer-row input{width:80px;padding:6px 10px;border:1.5px solid #e0a0b8;border-radius:6px;font-size:13px;font-weight:700;text-align:center;color:#8b1a4a}
+.buffer-row input:focus{outline:none;border-color:#c2185b}
+.buffer-row .pct{font-size:13px;font-weight:700;color:#8b1a4a}
+
+/* RESULT */
+.result-block{background:linear-gradient(135deg,#8b1a4a 0%,#c2185b 100%);border-radius:10px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.result-label{font-size:11px;font-weight:700;color:#f8bbd0;text-transform:uppercase;letter-spacing:.5px}
+.result-value{font-size:28px;font-weight:900;color:white;margin-top:2px;line-height:1}
+.result-breakdown{font-size:11px;color:#f8bbd0;margin-top:4px}
+.copy-btn{background:white;color:#8b1a4a;border:none;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:800;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:6px;transition:all .2s}
+.copy-btn:hover{background:#f8bbd0}
+.copy-btn.copied{background:#27ae60;color:white}
+
+/* MATH NOTE */
+.math-note{font-size:11px;color:#6c757d;text-align:center;margin-top:14px;line-height:1.6}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:32px;padding-bottom:24px;font-size:11px;color:#b0b0b0}
+.footer a{color:#c2185b;text-decoration:none}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="sloth-emoji">ðŸ¦¥</div>
+    <div class="header-text">
+      <h1>Currency Converter</h1>
+      <p>USD â†” CAD with broker buffer â€” for invoicing</p>
+    </div>
+    <a href="index.html" class="back-btn">â† Hub</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- RATE BAR -->
+  <div class="rate-bar">
+    <div class="rate-dot loading" id="rateDot"></div>
+    <div class="rate-info">
+      <div class="rate-label">Mid-Market Rate</div>
+      <div class="rate-value" id="rateDisplay">Loading...</div>
+      <div class="rate-updated" id="rateUpdated">Fetching live rate...</div>
+    </div>
+    <span class="override-toggle" id="overrideToggle" onclick="toggleOverride()">âœï¸ Override</span>
+  </div>
+
+  <!-- MANUAL OVERRIDE -->
+  <div class="override-panel" id="overridePanel">
+    <div class="override-row">
+      <label>Manual Rate (1 USD =)</label>
+      <input type="number" id="manualRate" placeholder="e.g. 1.3720" step="0.0001" min="0.5" max="3">
+      <button class="btn-use-override" onclick="applyManualRate()">Use This Rate</button>
+    </div>
+  </div>
+
+  <!-- CONVERTER CARD -->
+  <div class="card">
+
+    <!-- DIRECTION -->
+    <div class="direction-row">
+      <button class="dir-btn active" id="btnUsdCad" onclick="setDirection('usd-cad')">ðŸ‡ºðŸ‡¸ USD â†’ CAD ðŸ‡¨ðŸ‡¦</button>
+      <button class="dir-btn" id="btnCadUsd" onclick="setDirection('cad-usd')">ðŸ‡¨ðŸ‡¦ CAD â†’ USD ðŸ‡ºðŸ‡¸</button>
+    </div>
+
+    <!-- AMOUNT INPUT -->
+    <div class="input-group">
+      <label class="input-label" id="inputLabel">Amount (USD)</label>
+      <div class="input-wrap">
+        <input type="number" id="amountInput" placeholder="0.00" step="0.01" min="0" oninput="calculate()">
+        <span class="currency-badge" id="inputBadge">USD</span>
+      </div>
+    </div>
+
+    <!-- BUFFER -->
+    <div class="buffer-row">
+      <label>ðŸ“Š Volatility Buffer (margin)</label>
+      <input type="number" id="bufferInput" value="0.05" step="0.01" min="0" max="10" oninput="calculate()">
+      <span class="pct">%</span>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-block">
+      <div>
+        <div class="result-label" id="resultLabel">Final Quote (CAD)</div>
+        <div class="result-value" id="resultValue">â€”</div>
+        <div class="result-breakdown" id="resultBreakdown">Enter an amount above</div>
+      </div>
+      <button class="copy-btn" id="copyBtn" onclick="copyResult()">
+        ðŸ“‹ Copy
+      </button>
+    </div>
+
+    <div class="math-note" id="mathNote"></div>
+
+  </div>
+
+  <div class="footer">
+    Part of <a href="index.html">ðŸ¦¥ TotalOne Tools</a> Â· Rates via <a href="https://open.er-api.com" target="_blank">ExchangeRate-API</a>
+  </div>
+
+</div>
+
+<script>
+let liveRate = null;
+let activeRate = null;
+let direction = 'usd-cad'; // 'usd-cad' or 'cad-usd'
+let manualOverride = false;
+
+// Fetch live rate on load
+async function fetchRate() {
+  const dot = document.getElementById('rateDot');
+  const display = document.getElementById('rateDisplay');
+  const updated = document.getElementById('rateUpdated');
+  dot.className = 'rate-dot loading';
+  display.textContent = 'Loading...';
+  updated.textContent = 'Fetching live rate...';
+  try {
+    // Free, no-key-required endpoint
+    const res = await fetch('https://open.er-api.com/v6/latest/USD');
+    const data = await res.json();
+    if (data && data.rates && data.rates.CAD) {
+      liveRate = data.rates.CAD;
+      activeRate = liveRate;
+      manualOverride = false;
+      dot.className = 'rate-dot';
+      const now = new Date();
+      display.textContent = `1 USD = ${liveRate.toFixed(4)} CAD`;
+      updated.textContent = `Live Â· Updated ${now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}`;
+      calculate();
+    } else {
+      throw new Error('Bad response');
+    }
+  } catch(e) {
+    dot.className = 'rate-dot error';
+    display.textContent = 'Rate unavailable';
+    updated.textContent = 'Enter a rate manually â†’';
+    // Open override panel automatically
+    document.getElementById('overridePanel').classList.add('show');
+  }
+}
+
+function toggleOverride() {
+  const panel = document.getElementById('overridePanel');
+  panel.classList.toggle('show');
+}
+
+function applyManualRate() {
+  const val = parseFloat(document.getElementById('manualRate').value);
+  if (!val || val <= 0) return alert('Please enter a valid rate.');
+  activeRate = val;
+  manualOverride = true;
+  const dot = document.getElementById('rateDot');
+  const display = document.getElementById('rateDisplay');
+  const updated = document.getElementById('rateUpdated');
+  dot.className = 'rate-dot';
+  dot.style.background = '#f39c12';
+  display.textContent = `1 USD = ${val.toFixed(4)} CAD (manual)`;
+  updated.textContent = 'Manual override active';
+  document.getElementById('overridePanel').classList.remove('show');
+  calculate();
+}
+
+function setDirection(dir) {
+  direction = dir;
+  document.getElementById('btnUsdCad').classList.toggle('active', dir === 'usd-cad');
+  document.getElementById('btnCadUsd').classList.toggle('active', dir === 'cad-usd');
+  if (dir === 'usd-cad') {
+    document.getElementById('inputLabel').textContent = 'Amount (USD)';
+    document.getElementById('inputBadge').textContent = 'USD';
+    document.getElementById('resultLabel').textContent = 'Final Quote (CAD)';
+  } else {
+    document.getElementById('inputLabel').textContent = 'Amount (CAD)';
+    document.getElementById('inputBadge').textContent = 'CAD';
+    document.getElementById('resultLabel').textContent = 'Final Quote (USD)';
+  }
+  calculate();
+}
+
+function calculate() {
+  const amount = parseFloat(document.getElementById('amountInput').value);
+  const buffer = parseFloat(document.getElementById('bufferInput').value) || 0;
+  const resultValue = document.getElementById('resultValue');
+  const resultBreakdown = document.getElementById('resultBreakdown');
+  const mathNote = document.getElementById('mathNote');
+
+  if (!activeRate || isNaN(amount) || amount <= 0) {
+    resultValue.textContent = 'â€”';
+    resultBreakdown.textContent = 'Enter an amount above';
+    mathNote.textContent = '';
+    return;
+  }
+
+  let baseConverted, rate, fromCur, toCur;
+
+  if (direction === 'usd-cad') {
+    rate = activeRate; // USD â†’ CAD rate
+    baseConverted = amount * rate;
+    fromCur = 'USD'; toCur = 'CAD';
+  } else {
+    rate = 1 / activeRate; // CAD â†’ USD rate
+    baseConverted = amount * rate;
+    fromCur = 'CAD'; toCur = 'USD';
+  }
+
+  // Add buffer (buying currency = add buffer to protect broker)
+  const bufferMultiplier = 1 + (buffer / 100);
+  const finalAmount = baseConverted * bufferMultiplier;
+  const bufferAmount = finalAmount - baseConverted;
+
+  resultValue.textContent = `${finalAmount.toFixed(2)} ${toCur}`;
+  resultBreakdown.textContent = `Base: ${baseConverted.toFixed(2)} + Buffer: ${bufferAmount.toFixed(2)}`;
+
+  mathNote.textContent = `${amount.toFixed(2)} ${fromCur} Ã— ${rate.toFixed(4)} = ${baseConverted.toFixed(2)} ${toCur} â†’ Ã—${bufferMultiplier.toFixed(4)} (${buffer}% buffer) = ${finalAmount.toFixed(2)} ${toCur}`;
+
+  // Store for copy
+  window._copyValue = finalAmount.toFixed(2);
+}
+
+function copyResult() {
+  if (!window._copyValue) return;
+  navigator.clipboard.writeText(window._copyValue).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'âœ… Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = 'ðŸ“‹ Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = window._copyValue;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'âœ… Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = 'ðŸ“‹ Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Init
+fetchRate();
+</script>
+</body>
+</html>
