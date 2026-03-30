@@ -7,28 +7,28 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fdf0f5;color:#212529;min-height:100vh;display:flex;flex-direction:column}
-.site-header{background:linear-gradient(135deg,#8b1a4a 0%,#c2185b 100%);color:white;padding:28px 24px;text-align:center}
-.sloth-emoji{font-size:64px;display:block;margin-bottom:10px;line-height:1}
-.site-header h1{font-size:26px;font-weight:900;letter-spacing:-0.5px}
-.site-header p{font-size:13px;color:#f8bbd0;margin-top:6px}
-.container{max-width:700px;margin:36px auto;padding:0 20px;flex:1}
+.site-header{background:linear-gradient(135deg,#8b1a4a 0%,#c2185b 100%);color:white;padding:36px 24px;text-align:center}
+.sloth-icon{font-size:64px;display:block;margin-bottom:12px;line-height:1}
+.site-header h1{font-size:28px;font-weight:900;letter-spacing:-0.5px}
+.site-header p{font-size:13px;color:#f8bbd0;margin-top:8px}
+.container{max-width:720px;margin:40px auto;padding:0 20px;flex:1}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.tool-card{background:white;border-radius:14px;box-shadow:0 2px 10px rgba(139,26,74,.1);padding:28px 24px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;border:2px solid transparent;transition:all .2s;cursor:pointer}
+.tool-card{background:white;border-radius:14px;box-shadow:0 2px 10px rgba(139,26,74,.1);padding:28px 24px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;border:2px solid transparent;transition:all .2s}
 .tool-card:hover{border-color:#c2185b;box-shadow:0 6px 20px rgba(194,24,91,.18);transform:translateY(-2px)}
-.tool-icon{font-size:40px;line-height:1}
+.tool-icon{font-size:36px;line-height:1}
 .tool-name{font-size:17px;font-weight:800;color:#8b1a4a}
 .tool-desc{font-size:13px;color:#6c757d;line-height:1.5}
-.tool-tag{display:inline-block;background:#f8bbd0;color:#8b1a4a;font-size:11px;font-weight:700;padding:3px 10px;border-radius:50px;margin-top:4px}
-.tool-card.coming-soon{opacity:.55;cursor:default;background:#fdf8fb}
+.tool-tag{display:inline-block;background:#f8bbd0;color:#8b1a4a;font-size:11px;font-weight:700;padding:3px 10px;border-radius:50px;margin-top:4px;width:fit-content}
+.tool-card.coming-soon{opacity:.5;background:#fdf8fb}
 .tool-card.coming-soon:hover{border-color:transparent;box-shadow:0 2px 10px rgba(139,26,74,.1);transform:none}
 .footer{text-align:center;padding:24px;font-size:11px;color:#b0b0b0}
 </style>
 </head>
 <body>
 <header class="site-header">
-  <span class="sloth-emoji">&#x1F9A5;</span>
+  <span class="sloth-icon">&#x1F9A5;</span>
   <h1>TotalOne Tools</h1>
-  <p>Amanda's freight toolkit - pick a tool to get started</p>
+  <p>Pick a tool to get started</p>
 </header>
 <div class="container">
   <div class="grid">
@@ -45,13 +45,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <span class="tool-tag">USD - CAD - Broker Buffer</span>
     </a>
     <div class="tool-card coming-soon">
-      <div class="tool-icon">&#x1F51C;</div>
+      <div class="tool-icon">&#x1F4C5;</div>
       <div class="tool-name">More Coming Soon</div>
       <div class="tool-desc">More tools in the works. Check back soon.</div>
       <span class="tool-tag">Coming Soon</span>
     </div>
   </div>
 </div>
-<div class="footer">TotalOne Tools - Built for Amanda &#x1F9A5;</div>
+<div class="footer">TotalOne Tools &middot; Built for Amanda</div>
 </body>
 </html>
